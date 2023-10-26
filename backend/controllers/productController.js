@@ -5,10 +5,10 @@ const productModel = require('../models/productModel')
 router.get('/', productModel.getAllProducts)
 router.get('/:id', productModel.getProductById)
 
-router.post('/', productModel.createProduct)
+router.post('/create', productModel.createProduct)
 
-router.put('/:id', productModel.updateProduct)
+router.put('/:id/update', productModel.updateProduct)
 
-router.delete('/:id', productModel.deleteProduct)
+router.delete('/:id/delete', productModel.deleteProduct)
 
 module.exports = router

@@ -6,7 +6,7 @@ const ratingModel = require('../models/ratingModel')
 router.get('/', ratingModel.getAllRatings)
 router.get('/:id', ratingModel.getRatingById)
 
-router.post('/:id/add', auth.verifyToken, ratingModel.addRating)
+router.post('/:id/create', auth.verifyToken, ratingModel.addRating)
 
 router.put('/:id/update', auth.verifyToken, ratingModel.updateRating)
 
