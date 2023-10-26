@@ -8,5 +8,7 @@ app.use(express.json())
 
 
 app.use('/api/products', require('./controllers/productController'))
+app.use('/api/users', require('./controllers/userController'))
+app.use('/api/ratings', require('./controllers/ratingController'))
 
 module.exports = app
