@@ -19,7 +19,7 @@ exports.createBooking = async (req, res) => {
     const userId = req.userData._id
 
     const booking = await Booking.create({
-      productId: id,
+      rentalId: id,
       userId: userId,
       checkIn: checkIn,
       checkOut: checkOut,

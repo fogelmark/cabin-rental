@@ -7,7 +7,7 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
 
-app.use('/api/products', require('./controllers/productController'))
+app.use('/api/rentals', require('./controllers/rentalController'))
 app.use('/api/users', require('./controllers/userController'))
 app.use('/api/ratings', require('./controllers/ratingController'))
 app.use('/api/bookings', require('./controllers/bookingController'))

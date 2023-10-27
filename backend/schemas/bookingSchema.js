@@ -3,7 +3,7 @@ const date = require('date-and-time')
 const { Schema } = mongoose
 
 const bookingSchema = new Schema({
-  productId:  { type: mongoose.Types.ObjectId, ref: 'Product' },
+  rentalId:  { type: mongoose.Types.ObjectId, ref: 'Rental' },
   userId:     { type: mongoose.Types.ObjectId, ref: 'User' },
   checkIn:    { type: String },
   checkOut:   { type: String },

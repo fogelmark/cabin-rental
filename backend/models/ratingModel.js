@@ -8,7 +8,7 @@ exports.addRating = async (req, res) => {
     const userId = req.userData._id
     
     const newRating = await Rating.create({
-      productId: id,
+      rentalId: id,
       userId: userId,
       rating: rating,
       comment: comment

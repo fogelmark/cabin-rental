@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const date = require('date-and-time')
 const { Schema } = mongoose
 
-const productSchema = new Schema({
+const rentalSchema = new Schema({
   name:       { type: String, required: true },
   desc:       { type: String, required: true },
   package:    { type: String, required: true },
@@ -12,7 +12,7 @@ const productSchema = new Schema({
   updated_at: { type: String }
 });
 
-productSchema.pre('save', function (next) {
+rentalSchema.pre('save', function (next) {
   const now = new Date();
   this.updated_at = date.format(now, 'YYYY-MM-DD HH:mm');
   if (!this.created_at) {
@@ -21,12 +21,12 @@ productSchema.pre('save', function (next) {
   next();
 });
 
-productSchema.pre('findOneAndUpdate', function (next) {
+rentalSchema.pre('findOneAndUpdate', function (next) {
   const now = new Date();
   this._update.updated_at = date.format(now, 'YYYY-MM-DD HH:mm');
   next();
 });
 
-const Product = mongoose.model('Product', productSchema)
+const Rental = mongoose.model('Rental', rentalSchema)
 
-module.exports = Product
+module.exports = Rental
