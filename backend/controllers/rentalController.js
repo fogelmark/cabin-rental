@@ -4,6 +4,7 @@ const rentalModel = require('../models/rentalModel')
 
 router.get('/', rentalModel.getAllRentals)
 router.get('/:id', rentalModel.getRentalById)
+router.get('/slug/:slug', rentalModel.getRentalBySlug)
 
 router.post('/create', rentalModel.createRental)
 

@@ -10,7 +10,7 @@ const Rentals = () => {
     return <div>Loading...</div>
   }
 
-  console.log(rentals);
+  // console.log(rentals);
 
   return (
     <div>

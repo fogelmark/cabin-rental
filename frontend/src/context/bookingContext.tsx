@@ -35,7 +35,7 @@ export const BookingsProvider = ({ children }: BookingContextProviderProps) => {
         const response = await axios.get('http://localhost:7070/api/bookings/')
         setBookings(response.data)
         setLoading(false)
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         setError('Error when fetching bookings')
         setLoading(false)

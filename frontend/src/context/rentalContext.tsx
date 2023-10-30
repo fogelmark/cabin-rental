@@ -7,10 +7,10 @@ type RentalsContextProviderProps = {
 }
 
 type RentalsContextType = {
-  rentals: Bookings[]
+  rentals: Rentals[]
   loading: boolean
   error: string | null
-  setRentals: React.Dispatch<React.SetStateAction<Bookings[]>>
+  setRentals: React.Dispatch<React.SetStateAction<Rentals[]>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -25,15 +25,15 @@ export const useRentalsContext = () => {
 }
 
 export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
-  const [rentals, setRentals] = useState<Bookings[]>([])
+  const [rentals, setRentals] = useState<Rentals[]>([])
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchRentals = async () => {
       try {
-        const response = await axios.get('http://localhost:7070/api/rentals/')
-        setRentals(response.data)
+        const res = await axios.get('http://localhost:7070/api/rentals/')
+        setRentals(res.data)
         setLoading(false)
         // console.log(response.data);
       } catch (error) {
@@ -41,6 +41,7 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
         setLoading(false)
       }
     }
+
     fetchRentals()
   }, [])
 
