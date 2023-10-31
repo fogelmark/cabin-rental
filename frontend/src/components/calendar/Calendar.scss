@@ -1,21 +1,31 @@
-input.inputBox {
-  font-size: 22px;
-  padding: 5px 8px 4px 8px;
-  border-radius: 3px;
-  border: 1px solid #666;
-}
-
-// .calendarWrap {
-//   display: inline-block;
-//   position: relative;
-//   border: 1px solid;
-// }
-
-.calendarElement {
+.calendar {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 40px;
-  border: 1px solid #000000;
+  top: 100%;
+  box-shadow: 0 4px 4px 0px #00000030;
   z-index: 2;
+  border-radius: 10px;
+}
+
+.check-in-out-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid blue;
+  padding: 1rem;
+}
+
+.rdrCalendarWrapper {
+  font-size: 16px !important;
+  border-radius: 10px !important;
+}
+
+.rdrDateDisplayItemActive {
+  background-color: #ffffff !important;
+}
+
+.rdrDateDisplayItemActive input {
+  color: #000000 !important;
 }

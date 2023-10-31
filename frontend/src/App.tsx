@@ -7,6 +7,8 @@ import RentalsDetails from './pages/RentalsDetails'
 
 const App = () => {
 
+  console.log('App renders');
+
   const router = createBrowserRouter([
     {
       path: '/',

@@ -1,11 +1,10 @@
-import Calendar from "../components/calendar/Calendar"
+import Header from "../components/header/Header"
 
 
 const Home = () => {
   return (
     <div>
-      Home
-      <Calendar />
+      <Header />
     </div>
   )
 }

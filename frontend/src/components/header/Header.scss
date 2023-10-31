@@ -1,0 +1,21 @@
+.header-container {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+  width: 100%;
+  padding: 1rem;
+}
+
+.cabin-search-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  border: 1px solid red;
+  // padding: 1rem;
+  border-radius: 10px;
+}
