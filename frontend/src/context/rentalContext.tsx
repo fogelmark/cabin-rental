@@ -35,7 +35,7 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
         const res = await axios.get('http://localhost:7070/api/rentals/')
         setRentals(res.data)
         setLoading(false)
-        // console.log(response.data);
+        console.log(res.data);
       } catch (error) {
         setError('Error when fetching rentals')
         setLoading(false)

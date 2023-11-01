@@ -1,11 +1,13 @@
-.calendar {
+.calendar,
+.package-dropdown {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 100%;
-  box-shadow: 0 4px 4px 0px #00000030;
+  top: 10rem;
+  box-shadow: 0 4px 4px 2px #00000030;
   z-index: 2;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .check-in-out-container {
@@ -15,6 +17,7 @@
   align-items: center;
   border: 1px solid blue;
   padding: 1rem;
+  user-select: none;
 }
 
 .rdrCalendarWrapper {

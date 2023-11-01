@@ -4,6 +4,7 @@ import RootLayout from './layout/RootLayout'
 import Home from './pages/Home'
 import Rentals from './pages/Rentals'
 import RentalsDetails from './pages/RentalsDetails'
+import FilteredRentals from './pages/FilteredRentals'
 
 const App = () => {
 
@@ -24,7 +25,11 @@ const App = () => {
           element: <Rentals />
         },
         {
-          path: 'rentals/:rentalId',
+          path: 'rentals/packages/:pack',
+          element: <FilteredRentals />
+        },
+        {
+          path: 'rentals/:slug',
           element: <RentalsDetails />
         },
         // TO DO - ADD ALL OTHER PAGES
