@@ -1,37 +1,61 @@
 import { useState } from 'react';
-import { DateRange } from 'react-date-range';
+import { DateRange, DateRangeProps } from 'react-date-range';
 import format from 'date-fns/format';
-import { addDays } from 'date-fns';
+import { add, addDays, subYears } from 'date-fns';
 import './Calendar.scss';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import Overlay from '../overlay/Overlay';
+import { effect, signal } from '@preact/signals-react';
 
 const Calendar = () => {
   const today = new Date();
+  const LOCAL_STORAGE_KEY = 'checkInOutDates'
+  const [dates, setDates] = useState({
+    checkIn: 'When?',
+    checkOut: 'When?'
+  })
+
   const [range, setRange] = useState([
     {
       startDate: today,
-      endDate: addDays(today, 3),
+      endDate: addDays(today, 2),
       key: 'selection',
     },
   ]);
 
+  const handleDateChange = (item: any) => {
+    setRange([item.selection])
+    setDates({
+      checkIn: format(item.selection.startDate, 'dd/MM/yyyy'),
+      checkOut: format(item.selection.endDate, 'dd/MM/yyyy')
+    })
+  }
+
+  // const checkInOutDates = {
+  //   checkIn: startDateFormat,
+  //   checkOut: endDateFormat
+  // }
+
   const [open, setOpen] = useState(false);
+
+  // effect(() => {
+  //   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(checkInOutDates))
+  // })
 
   return (
     <>
       <div className='check-in-out-container'>
         <div>Check In</div>
         <div onClick={() => setOpen((prevOpen) => !prevOpen)}>
-          {`${format(range[0].startDate, 'dd/MM/yyyy')}`}
+          {dates.checkIn}
         </div>
       </div>
 
       <div className='check-in-out-container'>
         <div>Check Out</div>
         <div onClick={() => setOpen((prevOpen) => !prevOpen)}>
-          {`${format(range[0].endDate, 'dd/MM/yyyy')}`}
+          {dates.checkOut}
         </div>
       </div>
 
@@ -40,13 +64,12 @@ const Calendar = () => {
           <Overlay onClick={() => setOpen(false)} />
           <div className="calendar">
             <DateRange
-              onChange={(item) =>
-                setRange([item.selection as { startDate: Date; endDate: Date; key: string }])
-              }
+              onChange={handleDateChange}
               editableDateInputs={true}
               moveRangeOnFirstSelection={false}
               showMonthAndYearPickers={false}
               ranges={range}
+              initialFocusedRange={[0, 0]}
               months={1}
               direction="horizontal"
               minDate={today}
