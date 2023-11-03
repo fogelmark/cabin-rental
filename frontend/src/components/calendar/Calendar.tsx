@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { DateRange, DateRangeProps } from 'react-date-range';
-import format from 'date-fns/format';
-import { add, addDays, subYears } from 'date-fns';
+import { DateRange } from 'react-date-range';
+import { addDays, format } from 'date-fns';
 import './Calendar.scss';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import Overlay from '../overlay/Overlay';
-import { effect, signal } from '@preact/signals-react';
+// import { effect, signal } from '@preact/signals-react';
 
 const Calendar = () => {
   const today = new Date();
@@ -18,8 +17,8 @@ const Calendar = () => {
 
   const [range, setRange] = useState([
     {
-      startDate: today,
-      endDate: addDays(today, 2),
+      startDate: addDays(today, -1),
+      endDate: addDays(today, -1),
       key: 'selection',
     },
   ]);
@@ -32,16 +31,7 @@ const Calendar = () => {
     })
   }
 
-  // const checkInOutDates = {
-  //   checkIn: startDateFormat,
-  //   checkOut: endDateFormat
-  // }
-
   const [open, setOpen] = useState(false);
-
-  // effect(() => {
-  //   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(checkInOutDates))
-  // })
 
   return (
     <>
@@ -69,10 +59,11 @@ const Calendar = () => {
               moveRangeOnFirstSelection={false}
               showMonthAndYearPickers={false}
               ranges={range}
-              initialFocusedRange={[0, 0]}
               months={1}
               direction="horizontal"
               minDate={today}
+              showDateDisplay={false}
+              // disabledDates={[today]}
             />
           </div>
         </>
