@@ -62,7 +62,6 @@ exports.getRentalBySlug = async (req, res) => {
   }
 }
 
-
 // UPDATE RENTAL
 exports.updateRental = async (req, res) => {
   try {

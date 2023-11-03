@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DateRange } from 'react-date-range';
 import { addDays, format } from 'date-fns';
 import './Calendar.scss';
@@ -10,10 +10,14 @@ import Overlay from '../overlay/Overlay';
 const Calendar = () => {
   const today = new Date();
   const LOCAL_STORAGE_KEY = 'checkInOutDates'
-  const [dates, setDates] = useState({
-    checkIn: 'When?',
-    checkOut: 'When?'
-  })
+
+  const [dates, setDates] = useState<Dates>(() => {
+    const savedDates = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return savedDates ? JSON.parse(savedDates) : {
+      checkIn: 'When?',
+      checkOut: 'When?'
+    };
+  });
 
   const [range, setRange] = useState([
     {
@@ -32,6 +36,17 @@ const Calendar = () => {
   }
 
   const [open, setOpen] = useState(false);
+
+  const checkInOutDates = {
+    checkIn: dates.checkIn,
+    checkOut: dates.checkOut
+  }
+
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(checkInOutDates))
+    console.log('dates added to LS');
+  }, [dates])
 
   return (
     <>
@@ -63,7 +78,6 @@ const Calendar = () => {
               direction="horizontal"
               minDate={today}
               showDateDisplay={false}
-              // disabledDates={[today]}
             />
           </div>
         </>
