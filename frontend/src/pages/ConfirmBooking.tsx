@@ -1,14 +1,38 @@
-
+import { useEffect, useState } from 'react'
+import { useRentalsContext } from "../context/rentalContext"
+import { useParams } from "react-router-dom"
 
 const ConfirmBooking = () => {
+
+  const { random, rentalSlug, loading, setLoading } = useRentalsContext()
+  const { slug } = useParams()
+
+  function handleClick() {
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (slug && !loading) {
+        await random(slug);
+        setLoading(true);
+      }
+    }
+
+    fetchData();
+  }, [slug, random, loading]);
+
+
+
+
   return (
     <div>
       <h1>ConfirmBooking</h1>
       <div>Check-in: </div>
       <div>Check-out: </div>
-      <div>Chosen Cabin: </div>
-      <div>Guests: </div>
-      <div>Cabin Package: </div>
+      <div>Chosen Cabin: {rentalSlug?.name}</div>
+      <div>Guests: 2</div>
+      <div>Cabin Package: {rentalSlug?.package}</div>
+      <button onClick={handleClick}>GET</button>
       <div>
         Cancellation Protection
         <input type="checkbox" />
@@ -16,7 +40,7 @@ const ConfirmBooking = () => {
       </div>
       <div>Total: </div>
 
-      <form action="">
+      <form>
         <div>
           <label htmlFor="fullname">Full Name</label>
           <input type="text" id="fullname" placeholder="Enter full name" />

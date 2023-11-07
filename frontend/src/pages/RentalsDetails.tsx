@@ -104,7 +104,7 @@ const RentalsDetails = () => {
         <br />
         Total: {totalPrice}
         <br />
-        <Link to={`/confirm-booking`}>
+        <Link to={`/confirm-booking/${rental?.slug}`}>
           <button onClick={handleReservation}>Reserve</button>
         </Link>
       </div>

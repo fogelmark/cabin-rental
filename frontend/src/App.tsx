@@ -35,7 +35,7 @@ const App = () => {
           element: <RentalsDetails />
         },
         {
-          path: 'confirm-booking',
+          path: 'confirm-booking/:slug',
           element: <ConfirmBooking />
         },
         {
