@@ -5,10 +5,12 @@ import Home from './pages/Home'
 import Rentals from './pages/Rentals'
 import RentalsDetails from './pages/RentalsDetails'
 import FilteredRentals from './pages/FilteredRentals'
+import PaymentConfirmation from './pages/PaymentConfirmation'
+import ConfirmBooking from './pages/ConfirmBooking'
 
 const App = () => {
 
-  console.log('App renders');
+  // console.log('App renders');
 
   const router = createBrowserRouter([
     {
@@ -31,6 +33,14 @@ const App = () => {
         {
           path: 'rentals/:slug',
           element: <RentalsDetails />
+        },
+        {
+          path: 'confirm-booking',
+          element: <ConfirmBooking />
+        },
+        {
+          path: 'rentals/:slug',
+          element: <PaymentConfirmation />
         },
         // TO DO - ADD ALL OTHER PAGES
       ]

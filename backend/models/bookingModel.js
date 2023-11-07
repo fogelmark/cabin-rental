@@ -14,7 +14,20 @@ exports.getAllBookings = async (req, res) => {
 
 exports.createBooking = async (req, res) => {
   try {
-    const { checkIn, checkOut, totalPrice, status, cancelProt } = req.body
+    const { 
+      checkIn,
+      checkOut, 
+      totalPrice, 
+      status, 
+      cancelProt,
+      fullName,
+      email,
+      phone,
+      address,
+      postalCode,
+      city,
+      paymentMethod
+    } = req.body
     const { id } = req.params
     const userId = req.userData._id
 
@@ -25,7 +38,15 @@ exports.createBooking = async (req, res) => {
       checkOut: checkOut,
       totalPrice: totalPrice,
       status: status,
-      cancelProt: cancelProt
+      cancelProt: cancelProt,
+      fullName: fullName,
+      email: email,
+      phone: phone,
+      address: address,
+      postalCode: postalCode,
+      city: city,
+      paymentMethod: paymentMethod
+
     })
     res.status(201).json({
       message: 'Booking created successfully',

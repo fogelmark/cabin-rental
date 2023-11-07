@@ -3,15 +3,22 @@ const date = require('date-and-time')
 const { Schema } = mongoose
 
 const bookingSchema = new Schema({
-  rentalId:  { type: mongoose.Types.ObjectId, ref: 'Rental' },
-  userId:     { type: mongoose.Types.ObjectId, ref: 'User' },
-  checkIn:    { type: String },
-  checkOut:   { type: String },
-  totalPrice: { type: Number },
-  status:     { type: String, default: 'Pending' },
-  cancelProt: { type: Boolean },
-  created_at: { type: String },
-  updated_at: { type: String }
+  rentalId:      { type: mongoose.Types.ObjectId, ref: 'Rental' },
+  userId:        { type: mongoose.Types.ObjectId, ref: 'User' },
+  checkIn:       { type: String },
+  checkOut:      { type: String },
+  totalPrice:    { type: Number },
+  status:        { type: String, default: 'Pending' },
+  cancelProt:    { type: Boolean },
+  fullName:      { type: String, required: true },
+  email:         { type: String, required: true },
+  phone:         { type: Number, required: true },
+  address:       { type: String, required: true },
+  postalCode:    { type: String, required: true },
+  city:          { type: String, required: true },
+  paymentMethod: { type: String, required: true },
+  created_at:    { type: String },
+  updated_at:    { type: String }
 })
 
 bookingSchema.pre('save', function (next) {

@@ -9,7 +9,6 @@ const Home = () => {
 
   const handlePackageSelect = (pack: string) => {
     setSelectedPackage(pack)
-    console.log(pack);
   }
 
 

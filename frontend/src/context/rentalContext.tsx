@@ -16,6 +16,7 @@ type RentalsContextType = {
 
 const RentalsContext = createContext<RentalsContextType | undefined>(undefined)
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useRentalsContext = () => {
   const context = useContext(RentalsContext)
   if (!context) {
@@ -35,7 +36,7 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
         const res = await axios.get('http://localhost:7070/api/rentals/')
         setRentals(res.data)
         setLoading(false)
-        console.log(res.data);
+        // console.log(res.data);
       } catch (error) {
         setError('Error when fetching rentals')
         setLoading(false)

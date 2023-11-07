@@ -9,7 +9,7 @@ import Overlay from '../overlay/Overlay';
 
 const Calendar = () => {
   const today = new Date();
-  const LOCAL_STORAGE_KEY = 'checkInOutDates'
+  const LOCAL_STORAGE_KEY = 'RESERVATION'
 
   const [dates, setDates] = useState<Dates>(() => {
     const savedDates = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -39,13 +39,11 @@ const Calendar = () => {
 
   const checkInOutDates = {
     checkIn: dates.checkIn,
-    checkOut: dates.checkOut
+    checkOut: dates.checkOut,
   }
-
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(checkInOutDates))
-    console.log('dates added to LS');
   }, [dates])
 
   return (

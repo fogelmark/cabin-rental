@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import RentalsCard from '../components/cards/rentals/RentalsCard';
 import { useRentalsContext } from '../context/rentalContext';
+import { useEffect, useState } from 'react'
 
 const FilteredRentals = () => {
   const { rentals, loading } = useRentalsContext();

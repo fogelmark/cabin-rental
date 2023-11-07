@@ -1,10 +1,11 @@
 
+
 import { Link } from 'react-router-dom'
-import { useRentalsContext } from '../../../context/rentalContext'
+// import { useRentalsContext } from '../../../context/rentalContext'
 
 const RentalsCard = ({ rental }: RentalsCardProps) => {
 
-  const { loading } = useRentalsContext()
+  // const { loading } = useRentalsContext()
 
   // console.log(rental);
 
