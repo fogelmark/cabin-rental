@@ -8,11 +8,11 @@ type RentalsContextProviderProps = {
 
 type RentalsContextType = {
   rentals: Rentals[]
-  rentalSlug: Rentals | null
+  oneRental: Rentals | null
   loading: boolean
   error: string | null
   setRentals: React.Dispatch<React.SetStateAction<Rentals[]>>
-  setRentalSlug: React.Dispatch<React.SetStateAction<Rentals | null>>
+  setOneRental: React.Dispatch<React.SetStateAction<Rentals | null>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
   // fetchRentalBySlug: (slug: string) => Promise<Rentals | null>
   random: (slug: string) => Promise<any>
@@ -31,7 +31,7 @@ export const useRentalsContext = () => {
 
 export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
   const [rentals, setRentals] = useState<Rentals[]>([])
-  const [rentalSlug, setRentalSlug] = useState<Rentals | null>(null)
+  const [oneRental, setOneRental] = useState<Rentals | null>(null)
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -54,7 +54,7 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
     // setLoading(true)
     try {
       const res = await axios.get(`http://localhost:7070/api/rentals/slug/${slug}`)
-      setRentalSlug(res.data)
+      setOneRental(res.data)
     } catch (error) {
       console.log('Error fetching rental by slug');
     }
@@ -63,11 +63,11 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
 
   const contextValue: RentalsContextType = {
     rentals,
-    rentalSlug,
+    oneRental,
     loading,
     error,
     setRentals,
-    setRentalSlug,
+    setOneRental,
     setLoading,
     random,
   }

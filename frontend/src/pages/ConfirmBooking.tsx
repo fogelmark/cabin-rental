@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRentalsContext } from "../context/rentalContext"
 import { useParams } from "react-router-dom"
+import { useReservationContext } from '../context/reservationContext'
 
 const ConfirmBooking = () => {
 
-  const { random, rentalSlug, loading, setLoading } = useRentalsContext()
+  const { random, oneRental, loading, setLoading } = useRentalsContext()
+  const { reservation } = useReservationContext()
   const { slug } = useParams()
-
-  function handleClick() {
-  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,28 +16,23 @@ const ConfirmBooking = () => {
         setLoading(true);
       }
     }
-
     fetchData();
   }, [slug, random, loading]);
-
-
-
 
   return (
     <div>
       <h1>ConfirmBooking</h1>
-      <div>Check-in: </div>
-      <div>Check-out: </div>
-      <div>Chosen Cabin: {rentalSlug?.name}</div>
+      <div>Check-in: {reservation?.checkIn}</div>
+      <div>Check-out: {reservation?.checkOut}</div>
+      <div>Chosen Cabin: {oneRental?.name}</div>
       <div>Guests: 2</div>
-      <div>Cabin Package: {rentalSlug?.package}</div>
-      <button onClick={handleClick}>GET</button>
+      <div>Cabin Package: {oneRental?.package}</div>
       <div>
         Cancellation Protection
         <input type="checkbox" />
         500 SEK
       </div>
-      <div>Total: </div>
+      <div>Total: {reservation?.totalPrice}</div>
 
       <form>
         <div>

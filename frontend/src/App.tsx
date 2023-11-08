@@ -10,8 +10,6 @@ import ConfirmBooking from './pages/ConfirmBooking'
 
 const App = () => {
 
-  // console.log('App renders');
-
   const router = createBrowserRouter([
     {
       path: '/',
@@ -42,7 +40,6 @@ const App = () => {
           path: 'rentals/:slug',
           element: <PaymentConfirmation />
         },
-        // TO DO - ADD ALL OTHER PAGES
       ]
     }
   ])

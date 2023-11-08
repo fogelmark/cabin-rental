@@ -5,11 +5,11 @@ import './Calendar.scss';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import Overlay from '../overlay/Overlay';
-// import { effect, signal } from '@preact/signals-react';
+import { useReservationContext } from '../../context/reservationContext';
 
 const Calendar = () => {
   const today = new Date();
-  const LOCAL_STORAGE_KEY = 'RESERVATION'
+  const { LOCAL_STORAGE_KEY } = useReservationContext()
 
   const [dates, setDates] = useState<Dates>(() => {
     const savedDates = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -18,6 +18,8 @@ const Calendar = () => {
       checkOut: 'When?'
     };
   });
+
+
 
   const [range, setRange] = useState([
     {

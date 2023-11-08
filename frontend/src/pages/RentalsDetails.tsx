@@ -1,22 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
-import axios from "axios"
 import { useRentalsContext } from "../context/rentalContext"
+import { useReservationContext } from '../context/reservationContext'
 import { Link } from 'react-router-dom'
-
-type Reservation = {
-  checkIn: string
-  checkOut: string
-  totalPrice: number
-}
+import axios from "axios"
 
 const RentalsDetails = () => {
 
   const { slug } = useParams()
   const { loading, setLoading } = useRentalsContext()
-  const LOCAL_STORAGE_KEY = 'RESERVATION'
+  const { reservation, setReservation, LOCAL_STORAGE_KEY } = useReservationContext()
   const [rental, setRental] = useState<Rentals | null>(null)
-  const [reservation, setReservation] = useState<Reservation | null>(null)
   const [totalPrice, setTotalPrice] = useState(0)
 
   useEffect(() => {
@@ -41,7 +35,6 @@ const RentalsDetails = () => {
       const parsedReservation = JSON.parse(savedDates);
       setReservation(parsedReservation);
     }
-
   }, [])
 
   useEffect(() => {

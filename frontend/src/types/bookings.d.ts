@@ -8,3 +8,9 @@ type Bookings = {
   status: string
   cancelProt: boolean
 }
+
+type Reservation = {
+  checkIn: string
+  checkOut: string
+  totalPrice: number
+}
