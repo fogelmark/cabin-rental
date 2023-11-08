@@ -5,19 +5,19 @@ import { useReservationContext } from '../context/reservationContext'
 
 const ConfirmBooking = () => {
 
-  const { random, oneRental, loading, setLoading } = useRentalsContext()
+  const { fetchRentalBySlug, oneRental, loading, setLoading } = useRentalsContext()
   const { reservation } = useReservationContext()
   const { slug } = useParams()
 
   useEffect(() => {
     const fetchData = async () => {
       if (slug && !loading) {
-        await random(slug);
+        await fetchRentalBySlug(slug);
         setLoading(true);
       }
     }
     fetchData();
-  }, [slug, random, loading]);
+  }, [slug, fetchRentalBySlug, loading]);
 
   return (
     <div>

@@ -1,4 +1,4 @@
-type Users = {
+type User = {
   id: string
   firstName: string
   lastName: string

@@ -15,7 +15,7 @@ type RentalsContextType = {
   setOneRental: React.Dispatch<React.SetStateAction<Rentals | null>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
   // fetchRentalBySlug: (slug: string) => Promise<Rentals | null>
-  random: (slug: string) => Promise<any>
+  fetchRentalBySlug: (slug: string) => Promise<any>
 }
 
 const RentalsContext = createContext<RentalsContextType | undefined>(undefined)
@@ -50,7 +50,7 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
     fetchRentals()
   }, [])
 
-  const random = async (slug: string) => {
+  const fetchRentalBySlug = async (slug: string) => {
     // setLoading(true)
     try {
       const res = await axios.get(`http://localhost:7070/api/rentals/slug/${slug}`)
@@ -69,7 +69,7 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
     setRentals,
     setOneRental,
     setLoading,
-    random,
+    fetchRentalBySlug,
   }
 
   return (

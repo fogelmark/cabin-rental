@@ -1,8 +1,12 @@
-import React from 'react'
+import LoginModal from '../login/loginModal'
 
 const Navbar = () => {
+
   return (
-    <div>Navbar</div>
+    <div>
+      Navbar
+      <LoginModal />
+    </div>
   )
 }
 
