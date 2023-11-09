@@ -1,13 +1,38 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRentalsContext } from "../context/rentalContext"
 import { useParams } from "react-router-dom"
 import { useReservationContext } from '../context/reservationContext'
+import { useUserContext } from '../context/userContext'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+import BookingForm from '../components/forms/bookingform/BookingForm'
+import PaymentMethods from '../components/payment/PaymentMethods'
+import BookingInfo from '../components/booking/BookingInfo'
 
 const ConfirmBooking = () => {
 
   const { fetchRentalBySlug, oneRental, loading, setLoading } = useRentalsContext()
-  const { reservation } = useReservationContext()
+  const { reservation, LOCAL_STORAGE_KEY } = useReservationContext()
+  const { user } = useUserContext()
   const { slug } = useParams()
+
+  const initState = {
+    checkIn: reservation?.checkIn,
+    checkOut: reservation?.checkOut,
+    totalPrice: reservation?.totalPrice,
+    cancelProt: false,
+    fullName: '',
+    email: '',
+    phone: '',
+    address: '',
+    postalCode: '',
+    city: '',
+    paymentMethod: null
+  }
+
+  const [formData, setFormData] = useState(initState)
+  const [isSuccess, setIsSuccess] = useState(false)
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,80 +41,91 @@ const ConfirmBooking = () => {
         setLoading(true);
       }
     }
+
+    const reservationData = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+    if (reservationData) {
+      try {
+        const parsedReservationData = JSON.parse(reservationData);
+        setFormData((prevState) => ({
+          ...prevState,
+          ...parsedReservationData,
+        }));
+      } catch (error) {
+        console.error('Error parsing reservation data:', error);
+      }
+    }
+
+
+
     fetchData();
   }, [slug, fetchRentalBySlug, loading]);
 
+  const handleChange = (e: any) => {
+    const { name, value, type, checked } = e.target;
+
+    switch (name) {
+      case 'payment':
+        if (type === 'radio') {
+          setFormData((prevState) => ({
+            ...prevState,
+            paymentMethod: value,
+          }));
+        }
+        break;
+
+      case 'checkbox':
+        if (type === 'checkbox') {
+          setFormData(prevState => ({
+            ...prevState,
+            cancelProt: checked
+          }))
+        }
+        break;
+
+      default:
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: value,
+        }));
+    }
+    setIsSuccess(false);
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault()
+
+    // try {
+    //   const res = await axios.post(`http://localhost:7070/api/bookings/${oneRental?._id}/create`, formData, {
+    //     headers: {
+    //       Authorization: `Bearer ${user}`
+    //     }
+    //   })
+    //   setFormData(initState)
+    //   setIsSuccess(true)
+    //   console.log(res);
+    //   // if (setIsSuccess) {
+    //   //   fetchData()
+    //   //   setIsSuccess(true)
+    //   // }
+    // } catch (error) {
+    //   console.log('Error adding product', error);
+    // }
+    console.log('confirmed booking!', formData);
+  }
+
   return (
-    <div>
-      <h1>ConfirmBooking</h1>
-      <div>Check-in: {reservation?.checkIn}</div>
-      <div>Check-out: {reservation?.checkOut}</div>
-      <div>Chosen Cabin: {oneRental?.name}</div>
-      <div>Guests: 2</div>
-      <div>Cabin Package: {oneRental?.package}</div>
-      <div>
-        Cancellation Protection
-        <input type="checkbox" />
-        500 SEK
-      </div>
-      <div>Total: {reservation?.totalPrice}</div>
-
-      <form>
-        <div>
-          <label htmlFor="fullname">Full Name</label>
-          <input type="text" id="fullname" placeholder="Enter full name" />
-        </div>
-
-        <div>
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" placeholder="Enter email" />
-        </div>
-
-        <div>
-          <label htmlFor="phone">Phone Number</label>
-          <input type="text" id="phone" placeholder="Enter phone number" />
-        </div>
-
-        <div>
-          <label htmlFor="adress">Adress</label>
-          <input type="text" id="adress" placeholder="Enter adress" />
-        </div>
-
-        <div>
-          <label htmlFor="postalcode">Postal Code</label>
-          <input type="text" id="postalcode" placeholder="Enter postal code" />
-        </div>
-
-        <div>
-          <label htmlFor="city">City</label>
-          <input type="text" id="city" placeholder="Enter city" />
-        </div>
+    <>
+      <form onSubmit={handleSubmit}>
+        <h1>ConfirmBooking</h1>
+        <BookingInfo handleChange={handleChange} reservation={reservation} oneRental={oneRental} />
+        <BookingForm handleChange={handleChange} formData={formData} />
+        <PaymentMethods handleChange={handleChange} />
+        <Link to={`/payed/${slug}`}>
+          <button className='btn btn-primary' type='submit'>Confirm booking</button>
+        </Link>
       </form>
-
-      <div>
-        <h2>Payment Methods:</h2>
-        <div>
-          <div>
-            <input type="radio" id="payment-1" name="payment" value="visa-mastercard" />
-            <label htmlFor="payment-1">Visa/MasterCard</label>
-          </div>
-
-          <div>
-            <input type="radio" id="payment-2" name="payment" value="klarna" />
-            <label htmlFor="payment-2">Klarna</label>
-          </div>
-
-          <div>
-            <input type="radio" id="payment-3" name="payment" value="paypal" />
-            <label htmlFor="payment-3">PayPal</label>
-          </div>
-          <div>
-            <input type="radio" id="payment-4" name="payment" value="american" />
-            <label htmlFor="payment-4">American Express</label>
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
   )
 }
 

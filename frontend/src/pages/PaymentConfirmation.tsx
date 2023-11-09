@@ -1,7 +1,10 @@
 
 const PaymentConfirmation = () => {
+
+
+
   return (
-    <div>PaymentConfirmation</div>
+    <div>Thanks for your purchase</div>
   )
 }
 
