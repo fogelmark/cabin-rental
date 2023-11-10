@@ -1,4 +1,4 @@
-import { ReactNode, useState, useEffect, useContext, createContext } from "react"
+import { ReactNode, useState, useContext, createContext } from "react"
 import axios from "axios"
 
 
@@ -7,11 +7,12 @@ type BookingContextProviderProps = {
 }
 
 type BookingsContextType = {
-  bookings: Bookings[]
+  bookings: Bookings | null
   loading: boolean
   error: string | null
-  setBookings: React.Dispatch<React.SetStateAction<Bookings[]>>
+  setBookings: React.Dispatch<React.SetStateAction<Bookings | null>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  fetchBookingById: (_id: string) => Promise<void>
 }
 
 const BookingsContext = createContext<BookingsContextType | undefined>(undefined)
@@ -25,30 +26,28 @@ export const useBookingsContext = () => {
 }
 
 export const BookingsProvider = ({ children }: BookingContextProviderProps) => {
-  const [bookings, setBookings] = useState<Bookings[]>([])
+  const [bookings, setBookings] = useState<Bookings | null>(null)
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchBookings = async () => {
-      try {
-        const response = await axios.get('http://localhost:7070/api/bookings/')
-        setBookings(response.data)
-        setLoading(false)
-      } catch (error) {
-        setError('Error when fetching bookings')
-        setLoading(false)
-      }
+  const fetchBookingById = async (_id: string) => {
+    try {
+      const response = await axios.get(`http://localhost:7070/api/bookings/${_id}`)
+      setBookings(response.data)
+      setLoading(false)
+    } catch (error) {
+      setError('Error when fetching booking')
+      setLoading(false)
     }
-    fetchBookings()
-  }, [])
+  }
 
   const contextValue: BookingsContextType = {
     bookings: bookings,
     loading,
     error,
     setBookings,
-    setLoading
+    setLoading,
+    fetchBookingById
   }
 
   return (

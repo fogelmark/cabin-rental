@@ -37,7 +37,7 @@ const App = () => {
           element: <ConfirmBooking />
         },
         {
-          path: 'payed/:slug',
+          path: 'payment-confirmation/:id',
           element: <PaymentConfirmation />
         },
       ]

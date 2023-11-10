@@ -6,7 +6,14 @@ type Bookings = {
   checkOut: string
   totalPrice: number
   status: string
-  cancelProt: boolean
+  cancelProt: boolean,
+  fullName: string,
+  email: string,
+  phone: number,
+  address: string,
+  postalCode: number,
+  city: string,
+  paymentMethod: string
 }
 
 type Reservation = {

@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react'
 import { useRentalsContext } from "../context/rentalContext"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useReservationContext } from '../context/reservationContext'
 import { useUserContext } from '../context/userContext'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import BookingForm from '../components/forms/bookingform/BookingForm'
 import PaymentMethods from '../components/payment/PaymentMethods'
 import BookingInfo from '../components/booking/BookingInfo'
+import { useBookingsContext } from '../context/bookingContext'
 
 const ConfirmBooking = () => {
 
   const { fetchRentalBySlug, oneRental, loading, setLoading } = useRentalsContext()
   const { reservation, LOCAL_STORAGE_KEY } = useReservationContext()
+  const { fetchBookingById, setBookings, bookings } = useBookingsContext()
   const { user } = useUserContext()
   const { slug } = useParams()
+  const navigate = useNavigate()
 
   const initState = {
     checkIn: reservation?.checkIn,
@@ -95,23 +97,24 @@ const ConfirmBooking = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
 
-    // try {
-    //   const res = await axios.post(`http://localhost:7070/api/bookings/${oneRental?._id}/create`, formData, {
-    //     headers: {
-    //       Authorization: `Bearer ${user}`
-    //     }
-    //   })
-    //   setFormData(initState)
-    //   setIsSuccess(true)
-    //   console.log(res);
-    //   // if (setIsSuccess) {
-    //   //   fetchData()
-    //   //   setIsSuccess(true)
-    //   // }
-    // } catch (error) {
-    //   console.log('Error adding product', error);
-    // }
-    console.log('confirmed booking!', formData);
+    try {
+      const res = await axios.post(`http://localhost:7070/api/bookings/${oneRental?._id}/create`, formData, {
+        headers: {
+          Authorization: `Bearer ${user}`
+        }
+      })
+      const bookingDetails = res.data.booking
+      setFormData(initState)
+      setIsSuccess(true)
+      setBookings(bookingDetails)
+      console.log(bookings);
+      console.log('booking confirmed!', formData);
+      navigate(`/payment-confirmation/${bookingDetails._id}`)
+      // if (isSuccess) {
+      // }
+    } catch (error) {
+      console.log('Error adding product', error);
+    }
   }
 
   return (
@@ -121,9 +124,7 @@ const ConfirmBooking = () => {
         <BookingInfo handleChange={handleChange} reservation={reservation} oneRental={oneRental} />
         <BookingForm handleChange={handleChange} formData={formData} />
         <PaymentMethods handleChange={handleChange} />
-        <Link to={`/payed/${slug}`}>
-          <button className='btn btn-primary' type='submit'>Confirm booking</button>
-        </Link>
+        <button className='btn btn-primary' type='submit'>Confirm booking</button>
       </form>
     </>
   )
