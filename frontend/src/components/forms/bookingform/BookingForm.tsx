@@ -1,48 +1,43 @@
-
+import { UseFormRegister, FieldErrors } from 'react-hook-form'
+import { FormData } from '../../../types/formtypes'
 
 type BookingFormProps = {
-  handleChange: (e: any) => void
-  formData: {
-    fullName: string;
-    email: string;
-    phone: string;
-    address: string;
-    postalCode: string;
-    city: string;
-  }
+  register: UseFormRegister<FormData>
+  errors: FieldErrors<FormData>;
 }
 
-const BookingForm = ({ handleChange, formData }: BookingFormProps) => {
+const BookingForm = ({ register, errors }: BookingFormProps) => {
   return (
     <div>
       <div>
-        <label htmlFor="fullName">Full Name</label>
-        <input type="text" id="fullName" name='fullName' value={formData.fullName} onChange={handleChange} />
+        <label>fullname</label>
+        <input {...register('fullName', { required: 'Full name is required' })} />
+        {errors.fullName && <span>{errors.fullName.message}</span>}
       </div>
-
       <div>
-        <label htmlFor="email1">Email</label>
-        <input type="email" id="email1" name='email' value={formData.email} onChange={handleChange} />
+        <label>email</label>
+        <input {...register('email', { required: 'Email is required', pattern: { value: /\S+@\S+\.\S+/, message: 'Invalid email address' } })} />
+        {errors.email && <span>{errors.email.message}</span>}
       </div>
-
       <div>
-        <label htmlFor="phone">Phone Number</label>
-        <input type="text" id="phone" name='phone' value={formData.phone} onChange={handleChange} />
+        <label>phone</label>
+        <input {...register('phone', { required: 'Phone is required' })} />
+        {errors.phone && <span>{errors.phone.message}</span>}
       </div>
-
       <div>
-        <label htmlFor="address">Adress</label>
-        <input type="text" id="address" name='address' value={formData.address} onChange={handleChange} />
+        <label>address</label>
+        <input {...register('address', { required: 'address is required' })} />
+        {errors.address && <span>{errors.address.message}</span>}
       </div>
-
       <div>
-        <label htmlFor="postalcode">Postal Code</label>
-        <input type="text" id="postalcode" name='postalCode' value={formData.postalCode} onChange={handleChange} />
+        <label>postal code</label>
+        <input {...register('postalCode', { required: 'postalCode is required' })} />
+        {errors.postalCode && <span>{errors.postalCode.message}</span>}
       </div>
-
       <div>
-        <label htmlFor="city">City</label>
-        <input type="text" id="city" name='city' value={formData.city} onChange={handleChange} />
+        <label>city</label>
+        <input {...register('city', { required: 'city is required' })} />
+        {errors.city && <span>{errors.city.message}</span>}
       </div>
     </div>
   )

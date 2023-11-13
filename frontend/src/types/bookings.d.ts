@@ -1,5 +1,5 @@
 type Bookings = {
-  id: string
+  _id: string
   rentalId: string
   userId: string
   checkIn: string
@@ -13,18 +13,9 @@ type Bookings = {
   address: string,
   postalCode: number,
   city: string,
-  payment: string
+  payment: string,
+  reference: string
 }
-
-// type Inputs = {
-//   fullName: string
-//   email: string
-//   phone: number
-//   address: string
-//   postalCode: number
-//   city: string
-//   paymentMethod: string
-// }
 
 type Reservation = {
   checkIn: string

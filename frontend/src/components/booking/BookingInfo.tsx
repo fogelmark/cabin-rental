@@ -1,11 +1,13 @@
+import { UseFormRegister } from 'react-hook-form'
+import { FormData } from '../../types/formtypes'
 
 type BookingInfoProps = {
-  handleChange: (e: any) => void
+  register: UseFormRegister<FormData>
   reservation: Reservation | null
   oneRental: Rentals | null
 }
 
-const BookingInfo = ({ handleChange, reservation, oneRental }: BookingInfoProps) => {
+const BookingInfo = ({ register, reservation, oneRental }: BookingInfoProps) => {
   return (
     <div>
       <div>Check-in: {reservation?.checkIn}</div>
@@ -15,7 +17,7 @@ const BookingInfo = ({ handleChange, reservation, oneRental }: BookingInfoProps)
       <div>Cabin Package: {oneRental?.package}</div>
       <div>
         Cancellation Protection
-        <input onChange={handleChange} name='checkbox' type="checkbox" />
+        <input {...register('cancelProt')} type="checkbox" />
         500 SEK
       </div>
       <div>Total: {reservation?.totalPrice}</div>

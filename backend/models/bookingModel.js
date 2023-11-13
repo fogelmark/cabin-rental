@@ -25,7 +25,7 @@ exports.createBooking = async (req, res) => {
       address,
       postalCode,
       city,
-      payment
+      payment,
     } = req.body
     const { id } = req.params
     const userId = req.userData._id
@@ -46,8 +46,7 @@ exports.createBooking = async (req, res) => {
       address: address,
       postalCode: postalCode,
       city: city,
-      payment: payment
-
+      payment: payment,
     })
     res.status(201).json({
       message: 'Booking created successfully',
@@ -56,7 +55,7 @@ exports.createBooking = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: 'Error when creating booking',
-      error
+      error: error.message
     })
   }
 }

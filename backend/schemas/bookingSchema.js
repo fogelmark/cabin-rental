@@ -13,9 +13,10 @@ const bookingSchema = new Schema({
   email:         { type: String, required: true },
   phone:         { type: Number, required: true },
   address:       { type: String, required: true },
-  postalCode:    { type: String, required: true },
+  postalCode:    { type: Number, required: true },
   city:          { type: String, required: true },
   payment:       { type: String, required: true },
+  reference:     { type: String, unique: true },
   created_at:    { type: String },
   updated_at:    { type: String }
 })
@@ -26,6 +27,11 @@ bookingSchema.pre('save', function (next) {
   if (!this.created_at) {
     this.created_at = date.format(now, 'YYYY-MM-DD HH:mm');
   }
+
+  const timestamp = date.format(now, 'YYYYMMDD');
+  const random = Math.floor(Math.random() * 10000);
+  this.reference = `BOOKING-${timestamp}-${random}`;
+
   next();
 });
 

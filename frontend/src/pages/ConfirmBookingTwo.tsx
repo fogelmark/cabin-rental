@@ -9,28 +9,7 @@ import PaymentMethods from '../components/payment/PaymentMethods'
 import BookingInfo from '../components/booking/BookingInfo'
 import { useBookingsContext } from '../context/bookingContext'
 import { useForm, SubmitHandler } from 'react-hook-form';
-
-enum PaymentEnum {
-  visa_mc = 'visa_mc',
-  klarna = 'klarna',
-  paypal = 'paypal',
-  amex = 'amex',
-}
-
-type FormData = {
-  checkIn: string
-  checkOut: string
-  totalPrice: string
-  cancelProt: boolean
-  fullName: string
-  email: string
-  phone: number
-  address: string
-  postalCode: number
-  city: string
-  payment: PaymentEnum
-}
-
+import { FormData } from '../types/formtypes'
 
 const ConfirmBookingTwo = () => {
 
@@ -70,8 +49,8 @@ const ConfirmBookingTwo = () => {
         }
       });
       const bookingDetails = res.data.booking
-      setIsSuccess(true)
       setBookings(bookingDetails)
+      setIsSuccess(true)
       if (bookingDetails) {
         navigate(`/payment-confirmation/${bookingDetails._id}`)
       }
@@ -84,62 +63,9 @@ const ConfirmBookingTwo = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1>ConfirmBooking</h1>
-        {/* <BookingInfo handleChange={handleChange} reservation={reservation} oneRental={oneRental} /> */}
-        {/* <BookingForm handleChange={handleChange} formData={formData} /> */}
-
-        <div>Check-in: {reservation?.checkIn}</div>
-        <div>Check-out: {reservation?.checkOut}</div>
-        <div>Chosen Cabin: {oneRental?.name}</div>
-        <div>Guests: 2</div>
-        <div>Cabin Package: {oneRental?.package}</div>
-        <div>
-          Cancellation Protection
-          <input {...register('cancelProt')} type="checkbox" />
-          500 SEK
-        </div>
-
-        <div>Total: {reservation?.totalPrice}</div>
-        <div>
-          <label>fullname</label>
-          <input {...register('fullName', { required: 'Full name is required' })} />
-          {errors.fullName && <span>{errors.fullName.message}</span>}
-        </div>
-        <div>
-          <label>email</label>
-          <input {...register('email', { required: 'Email is required', pattern: { value: /\S+@\S+\.\S+/, message: 'Invalid email address' } })} />
-          {errors.email && <span>{errors.email.message}</span>}
-        </div>
-        <div>
-          <label>phone</label>
-          <input {...register('phone', { required: 'Phone is required' })} />
-          {errors.phone && <span>{errors.phone.message}</span>}
-        </div>
-        <div>
-          <label>address</label>
-          <input {...register('address', { required: 'address is required' })} />
-          {errors.address && <span>{errors.address.message}</span>}
-        </div>
-        <div>
-          <label>postal code</label>
-          <input {...register('postalCode', { required: 'postalCode is required' })} />
-          {errors.postalCode && <span>{errors.postalCode.message}</span>}
-        </div>
-        <div>
-          <label>city</label>
-          <input {...register('city', { required: 'city is required' })} />
-          {errors.city && <span>{errors.city.message}</span>}
-        </div>
-        <div>
-          <label>Payment Method</label>
-          <select {...register('payment')}>
-            <option value="visa_mc">visa/mastercard</option>
-            <option value="klarna">klarna</option>
-            <option value="paypal">paypal</option>
-            <option value="amex">amex</option>
-          </select>
-        </div>
-
-        {/* <PaymentMethods handleChange={handleChange} /> */}
+        <BookingInfo register={register} reservation={reservation} oneRental={oneRental} />
+        <BookingForm register={register} errors={errors} />
+        <PaymentMethods register={register} errors={errors} />
         <button className='btn btn-primary' type='submit'>Confirm booking</button>
       </form>
     </>
