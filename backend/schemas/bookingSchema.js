@@ -8,7 +8,6 @@ const bookingSchema = new Schema({
   checkIn:       { type: String },
   checkOut:      { type: String },
   totalPrice:    { type: Number },
-  status:        { type: String, default: 'Pending' },
   cancelProt:    { type: Boolean },
   fullName:      { type: String, required: true },
   email:         { type: String, required: true },
@@ -16,7 +15,7 @@ const bookingSchema = new Schema({
   address:       { type: String, required: true },
   postalCode:    { type: String, required: true },
   city:          { type: String, required: true },
-  paymentMethod: { type: String, required: true },
+  payment:       { type: String, required: true },
   created_at:    { type: String },
   updated_at:    { type: String }
 })

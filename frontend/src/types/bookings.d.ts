@@ -13,8 +13,18 @@ type Bookings = {
   address: string,
   postalCode: number,
   city: string,
-  paymentMethod: string
+  payment: string
 }
+
+// type Inputs = {
+//   fullName: string
+//   email: string
+//   phone: number
+//   address: string
+//   postalCode: number
+//   city: string
+//   paymentMethod: string
+// }
 
 type Reservation = {
   checkIn: string

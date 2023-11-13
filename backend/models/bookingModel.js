@@ -17,8 +17,7 @@ exports.createBooking = async (req, res) => {
     const { 
       checkIn,
       checkOut, 
-      totalPrice, 
-      status, 
+      totalPrice,
       cancelProt,
       fullName,
       email,
@@ -26,18 +25,20 @@ exports.createBooking = async (req, res) => {
       address,
       postalCode,
       city,
-      paymentMethod
+      payment
     } = req.body
     const { id } = req.params
     const userId = req.userData._id
+
+    const cancelFee = 500
+    const finalPrice = cancelProt ? totalPrice + cancelFee : totalPrice
 
     const booking = await Booking.create({
       rentalId: id,
       userId: userId,
       checkIn: checkIn,
       checkOut: checkOut,
-      totalPrice: totalPrice,
-      status: status,
+      totalPrice: finalPrice,
       cancelProt: cancelProt,
       fullName: fullName,
       email: email,
@@ -45,7 +46,7 @@ exports.createBooking = async (req, res) => {
       address: address,
       postalCode: postalCode,
       city: city,
-      paymentMethod: paymentMethod
+      payment: payment
 
     })
     res.status(201).json({
@@ -54,7 +55,8 @@ exports.createBooking = async (req, res) => {
     })
   } catch (error) {
     res.status(500).json({
-      message: 'Error when creating booking'
+      message: 'Error when creating booking',
+      error
     })
   }
 }

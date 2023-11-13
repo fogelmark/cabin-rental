@@ -7,6 +7,7 @@ import RentalsDetails from './pages/RentalsDetails'
 import FilteredRentals from './pages/FilteredRentals'
 import PaymentConfirmation from './pages/PaymentConfirmation'
 import ConfirmBooking from './pages/ConfirmBooking'
+import ConfirmBookingTwo from './pages/ConfirmBookingTwo'
 
 const App = () => {
 
@@ -32,9 +33,13 @@ const App = () => {
           path: 'rentals/:slug',
           element: <RentalsDetails />
         },
+        // {
+        //   path: 'confirm-booking/:slug',
+        //   element: <ConfirmBooking />
+        // },
         {
           path: 'confirm-booking/:slug',
-          element: <ConfirmBooking />
+          element: <ConfirmBookingTwo />
         },
         {
           path: 'payment-confirmation/:id',

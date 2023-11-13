@@ -8,12 +8,20 @@ import BookingForm from '../components/forms/bookingform/BookingForm'
 import PaymentMethods from '../components/payment/PaymentMethods'
 import BookingInfo from '../components/booking/BookingInfo'
 import { useBookingsContext } from '../context/bookingContext'
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+// type FormData = {
+//   fullName: string
+//   email: string
+// }
 
 const ConfirmBooking = () => {
 
+  // const { register, handleSubmit, formState: { errors }} = useForm<FormData>()
+
   const { fetchRentalBySlug, oneRental, loading, setLoading } = useRentalsContext()
   const { reservation, LOCAL_STORAGE_KEY } = useReservationContext()
-  const { fetchBookingById, setBookings, bookings } = useBookingsContext()
+  const { setBookings, bookings } = useBookingsContext()
   const { user } = useUserContext()
   const { slug } = useParams()
   const navigate = useNavigate()
@@ -31,6 +39,7 @@ const ConfirmBooking = () => {
     city: '',
     paymentMethod: null
   }
+
 
   const [formData, setFormData] = useState(initState)
   const [isSuccess, setIsSuccess] = useState(false)
@@ -63,6 +72,8 @@ const ConfirmBooking = () => {
     fetchData();
   }, [slug, fetchRentalBySlug, loading]);
 
+
+
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
 
@@ -92,7 +103,7 @@ const ConfirmBooking = () => {
         }));
     }
     setIsSuccess(false);
-  };
+  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -107,11 +118,11 @@ const ConfirmBooking = () => {
       setFormData(initState)
       setIsSuccess(true)
       setBookings(bookingDetails)
-      console.log(bookings);
-      console.log('booking confirmed!', formData);
-      navigate(`/payment-confirmation/${bookingDetails._id}`)
-      // if (isSuccess) {
-      // }
+      if (bookings) {
+        console.log(bookingDetails);
+        navigate(`/payment-confirmation/${bookingDetails._id}`)
+        console.log('redirecting to payment');
+      }
     } catch (error) {
       console.log('Error adding product', error);
     }

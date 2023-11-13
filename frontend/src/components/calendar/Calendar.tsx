@@ -32,8 +32,8 @@ const Calendar = () => {
   const handleDateChange = (item: any) => {
     setRange([item.selection])
     setDates({
-      checkIn: format(item.selection.startDate, 'dd/MM/yyyy'),
-      checkOut: format(item.selection.endDate, 'dd/MM/yyyy')
+      checkIn: format(item.selection.startDate, 'dd-MM-yyyy'),
+      checkOut: format(item.selection.endDate, 'dd-MM-yyyy')
     })
   }
 
