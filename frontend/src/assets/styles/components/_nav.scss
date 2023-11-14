@@ -1,0 +1,35 @@
+@use '../abstracts' as *;
+
+.nav-container {
+  @include flex(space-between);
+  background-color: $primary-green;
+  padding: 1rem 2rem;
+}
+
+.nav-logo {
+  @include base-image;
+  width: 80px;
+}
+
+.user-link {
+  @include font($body-font, 20px, $primary-yellow, $weight-bold);
+  cursor: pointer;
+  margin-bottom: 0;
+
+  &:hover {
+    color: $primary-yellow-hover;
+  }
+}
+
+.welcome-msg {
+  @include flex(space-between, center, row, 1rem);
+
+  p {
+    @include font($body-font, 20px, $primary-yellow, $weight-bold);
+    margin-bottom: 0;
+  }
+
+  .divider {
+    color: $primary-yellow;
+  }
+}

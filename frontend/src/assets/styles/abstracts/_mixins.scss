@@ -1,0 +1,24 @@
+@mixin base-image {
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 1rem;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+@mixin flex($justify: center, $align: center, $direction: row, $gap: 0, $inline: false) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+@mixin font($family: $body-font, $size: 16px, $color: $black, $weight: $weight-bold) {
+  font-family: $family;
+  font-size: $size;
+  color: $color;
+  font-weight: $weight;
+}

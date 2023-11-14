@@ -13,15 +13,13 @@ const Home = () => {
 
 
   return (
-    <div>
-      <div className='header-container'>
-        <div className='cabin-search-widget'>
-          <Calendar />
-          <PackageDropDown selectedPackage={selectedPackage} onSelectedPackage={handlePackageSelect} />
-          <Link to={`/rentals/packages/${selectedPackage}`}>
-            <button>Search</button>
-          </Link>
-        </div>
+    <div className='header-container'>
+      <div className='cabin-search-widget'>
+        <Calendar />
+        <PackageDropDown selectedPackage={selectedPackage} onSelectedPackage={handlePackageSelect} />
+        <Link to={`/rentals/packages/${selectedPackage}`}>
+          <button>Search</button>
+        </Link>
       </div>
     </div>
   )

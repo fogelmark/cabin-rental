@@ -27,24 +27,32 @@ const LoginModal = () => {
     e.preventDefault()
     try {
       const res = await axios.post('http://localhost:7070/api/users/login', formData)
-      const user = res.data.token
-      localStorage.setItem('token', JSON.stringify(res.data.token))
+      const user = res.data
+      localStorage.setItem('token', JSON.stringify(res.data))
       setUser(user)
     } catch (error) {
       console.log('Login error', error);
     }
   }
 
+  console.log(user);
+
   return (
     <>
       {user ? (
-        <button type="button" className="btn btn-danger" onClick={handleLogout}>
-          Logout
-        </button>
+        <div className='welcome-msg'>
+          <p>
+            Welcome, {user.displayName}!
+          </p>
+          <span className='divider'>•</span>
+          <p className="user-link logout" onClick={handleLogout}>
+            Logout
+          </p>
+        </div>
       ) : (
-        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <p className="user-link login" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Login
-        </button>
+        </p>
       )}
 
       <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

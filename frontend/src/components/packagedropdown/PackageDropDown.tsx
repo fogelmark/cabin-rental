@@ -11,8 +11,6 @@ const PackageDropDown = ({ selectedPackage, onSelectedPackage }: PackageDropDown
 
   const [open, setOpen] = useState(false)
 
-  // localStorage.setItem('')
-
   const handlePackageSelect = (pack: string) => {
     onSelectedPackage(pack)
     setOpen(false)
