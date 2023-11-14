@@ -30,8 +30,6 @@ const LoginModal = () => {
       const user = res.data.token
       localStorage.setItem('token', JSON.stringify(res.data.token))
       setUser(user)
-      console.log(user);
-      console.log(res.data);
     } catch (error) {
       console.log('Login error', error);
     }

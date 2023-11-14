@@ -14,11 +14,6 @@ const PaymentConfirmation = () => {
     }
   }, [])
 
-
-  // FEATURES:
-
-  // GENERATE RANDOM BOOKING REFERENCE
-
   return (
     <>
       <div>THANK YOU FOR YOUR PAYMENT!</div>

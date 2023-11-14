@@ -37,7 +37,6 @@ export const UserProvider = ({ children }: UserContextProviderProps) => {
   }, [])
 
 
-
   const contextValue: UserContextType = {
     user,
     setUser

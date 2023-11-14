@@ -4,3 +4,10 @@ type User = {
   lastName: string
   password: string
 }
+
+type Register = {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+}

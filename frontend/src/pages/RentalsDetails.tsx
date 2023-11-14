@@ -4,14 +4,18 @@ import { useRentalsContext } from "../context/rentalContext"
 import { useReservationContext } from '../context/reservationContext'
 import { Link } from 'react-router-dom'
 import axios from "axios"
+import { useUserContext } from '../context/userContext'
+import LoginModal from '../components/login/loginModal'
 
 const RentalsDetails = () => {
 
   const { slug } = useParams()
   const { loading, setLoading } = useRentalsContext()
+  const { user } = useUserContext()
   const { reservation, setReservation, LOCAL_STORAGE_KEY } = useReservationContext()
   const [rental, setRental] = useState<Rentals | null>(null)
   const [totalPrice, setTotalPrice] = useState(0)
+  const [showLoginModal, setShowLoginModal] = useState(false)
 
   useEffect(() => {
     const fetchRentalDetails = async () => {
@@ -62,6 +66,12 @@ const RentalsDetails = () => {
 
 
   const handleReservation = () => {
+
+    if (!user) {
+      setShowLoginModal(true)
+      return
+    }
+
     const existingReservationData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '{}');
 
     const reservationData: Reservation = {
@@ -97,9 +107,13 @@ const RentalsDetails = () => {
         <br />
         Total: {totalPrice}
         <br />
-        <Link to={`/confirm-booking/${rental?.slug}`}>
-          <button onClick={handleReservation}>Reserve</button>
-        </Link>
+        {user ? (
+          <Link to={`/confirm-booking/${rental?.slug}`}>
+            <button onClick={handleReservation}>Reserve</button>
+          </Link>
+        ) : (
+          <button onClick={handleReservation} data-bs-toggle="modal" data-bs-target="#exampleModal">Reserve</button>
+        )}
       </div>
     </>
   )

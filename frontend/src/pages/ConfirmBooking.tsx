@@ -9,39 +9,19 @@ import PaymentMethods from '../components/payment/PaymentMethods'
 import BookingInfo from '../components/booking/BookingInfo'
 import { useBookingsContext } from '../context/bookingContext'
 import { useForm, SubmitHandler } from 'react-hook-form';
-
-// type FormData = {
-//   fullName: string
-//   email: string
-// }
+import { FormData } from '../types/formtypes'
 
 const ConfirmBooking = () => {
 
-  // const { register, handleSubmit, formState: { errors }} = useForm<FormData>()
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
   const { fetchRentalBySlug, oneRental, loading, setLoading } = useRentalsContext()
-  const { reservation, LOCAL_STORAGE_KEY } = useReservationContext()
-  const { setBookings, bookings } = useBookingsContext()
+  const { reservation } = useReservationContext()
+  const { setBookings } = useBookingsContext()
   const { user } = useUserContext()
   const { slug } = useParams()
   const navigate = useNavigate()
 
-  const initState = {
-    checkIn: reservation?.checkIn,
-    checkOut: reservation?.checkOut,
-    totalPrice: reservation?.totalPrice,
-    cancelProt: false,
-    fullName: '',
-    email: '',
-    phone: '',
-    address: '',
-    postalCode: '',
-    city: '',
-    paymentMethod: null
-  }
-
-
-  const [formData, setFormData] = useState(initState)
   const [isSuccess, setIsSuccess] = useState(false)
 
 
@@ -52,76 +32,27 @@ const ConfirmBooking = () => {
         setLoading(true);
       }
     }
-
-    const reservationData = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-    if (reservationData) {
-      try {
-        const parsedReservationData = JSON.parse(reservationData);
-        setFormData((prevState) => ({
-          ...prevState,
-          ...parsedReservationData,
-        }));
-      } catch (error) {
-        console.error('Error parsing reservation data:', error);
-      }
-    }
-
-
-
     fetchData();
   }, [slug, fetchRentalBySlug, loading]);
 
-
-
-  const handleChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
-
-    switch (name) {
-      case 'payment':
-        if (type === 'radio') {
-          setFormData((prevState) => ({
-            ...prevState,
-            paymentMethod: value,
-          }));
-        }
-        break;
-
-      case 'checkbox':
-        if (type === 'checkbox') {
-          setFormData(prevState => ({
-            ...prevState,
-            cancelProt: checked
-          }))
-        }
-        break;
-
-      default:
-        setFormData((prevState) => ({
-          ...prevState,
-          [name]: value,
-        }));
-    }
-    setIsSuccess(false);
-  }
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault()
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
 
     try {
-      const res = await axios.post(`http://localhost:7070/api/bookings/${oneRental?._id}/create`, formData, {
+      const res = await axios.post(`http://localhost:7070/api/bookings/${oneRental?._id}/create`, {
+        ...data,
+        checkIn: reservation?.checkIn,
+        checkOut: reservation?.checkOut,
+        totalPrice: reservation?.totalPrice,
+      }, {
         headers: {
           Authorization: `Bearer ${user}`
         }
-      })
+      });
       const bookingDetails = res.data.booking
-      setFormData(initState)
-      setIsSuccess(true)
       setBookings(bookingDetails)
-      if (bookings) {
-        console.log(bookingDetails);
+      setIsSuccess(true)
+      if (bookingDetails) {
         navigate(`/payment-confirmation/${bookingDetails._id}`)
-        console.log('redirecting to payment');
       }
     } catch (error) {
       console.log('Error adding product', error);
@@ -130,11 +61,11 @@ const ConfirmBooking = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <h1>ConfirmBooking</h1>
-        <BookingInfo handleChange={handleChange} reservation={reservation} oneRental={oneRental} />
-        <BookingForm handleChange={handleChange} formData={formData} />
-        <PaymentMethods handleChange={handleChange} />
+        <BookingInfo register={register} reservation={reservation} oneRental={oneRental} />
+        <BookingForm register={register} errors={errors} />
+        <PaymentMethods register={register} errors={errors} />
         <button className='btn btn-primary' type='submit'>Confirm booking</button>
       </form>
     </>
