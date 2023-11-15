@@ -1,7 +1,18 @@
 @use '../layouts/home';
+@use '../abstracts/type' as *;
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: $body-font;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-bottom: 0;
 }

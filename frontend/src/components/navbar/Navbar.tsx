@@ -1,6 +1,6 @@
 import LoginModal from '../login/LoginModal'
 import '../../assets/styles/components/_nav.scss'
-import logo from '../../assets/images/nn-main-logo.png'
+import logo from '../../assets/images/nn_main_logo.png'
 import { NavLink } from 'react-router-dom'
 
 
