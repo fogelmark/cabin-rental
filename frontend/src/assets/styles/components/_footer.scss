@@ -42,11 +42,18 @@
   }
 }
 
+.fa-regular,
 .fa-solid,
 .fa-brands {
   font-size: 33px;
   color: $primary-yellow;
 }
+
+// .fa-location-dot,
+// .fa-phone,
+// .fa-envelope {
+
+// }
 
 .fa-brands {
   cursor: pointer;

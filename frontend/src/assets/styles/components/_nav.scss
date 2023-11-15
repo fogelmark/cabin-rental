@@ -1,6 +1,6 @@
 @use '../abstracts' as *;
 
-.nav-container {
+.navbar {
   @include flex(space-between);
   background-color: $primary-green;
   padding: 1rem 2rem;
@@ -14,22 +14,91 @@
 .user-link {
   @include font($body-font, 20px, $primary-yellow, $weight-bold);
   cursor: pointer;
-  margin-bottom: 0;
+  margin: 0 1rem 0 0;
 
   &:hover {
     color: $primary-yellow-hover;
   }
 }
 
-.welcome-msg {
+.login-status {
   @include flex(space-between, center, row, 1rem);
 
   p {
-    @include font($body-font, 20px, $primary-yellow, $weight-bold);
+    @include font($body-font, 20px, $primary-yellow, $weight-regular);
     margin-bottom: 0;
   }
+}
 
-  .divider {
-    color: $primary-yellow;
+// MQ MOBILE
+@media (max-width: 991px) {
+
+  .fa-circle-user {
+    border: 1px solid red;
+    display: none !important;
+  }
+
+  #checkbox {
+    display: none;
+  }
+
+  .toggle {
+    position: relative;
+    width: 20px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition-duration: .5s;
+  }
+
+  .bars {
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+
+  #bar2 {
+    transition-duration: .350s;
+  }
+
+  #checkbox:checked+.toggle .bars {
+    position: absolute;
+    transition-duration: .5s;
+  }
+
+  #checkbox:checked+.toggle #bar2 {
+    transform: scaleX(0);
+    transition-duration: .5s;
+  }
+
+  #checkbox:checked+.toggle #bar1 {
+    width: 100%;
+    transform: rotate(45deg);
+    transition-duration: .5s;
+  }
+
+  #checkbox:checked+.toggle #bar3 {
+    width: 100%;
+    transform: rotate(-45deg);
+    transition-duration: .5s;
+  }
+
+  #checkbox:checked+.toggle {
+    transition-duration: .5s;
+    transform: rotate(180deg);
+  }
+}
+
+// MQ +850px
+@media (min-width: 992px) {
+
+  .toggle,
+  #checkbox {
+    display: none;
   }
 }

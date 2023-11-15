@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useUserContext } from '../../context/userContext'
 import axios from 'axios'
+import '../../assets/styles/components/_nav.scss'
 
 const LoginModal = () => {
 
@@ -40,19 +41,17 @@ const LoginModal = () => {
   return (
     <>
       {user ? (
-        <div className='welcome-msg'>
-          <p>
-            Welcome, {user.displayName}!
-          </p>
-          <span className='divider'>•</span>
+        <div className='login-status'>
           <p className="user-link logout" onClick={handleLogout}>
             Logout
           </p>
         </div>
       ) : (
-        <p className="user-link login" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Login
-        </p>
+        <div className='login-status'>
+          <p className="user-link login" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Login
+          </p>
+        </div>
       )}
 
       <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

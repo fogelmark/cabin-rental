@@ -3,10 +3,11 @@ import Navbar from '../components/navbar/Navbar'
 import Footer from '../components/footer/Footer'
 
 const RootLayout = () => {
+
   return (
     <>
       <Navbar />
-      <div className="container">
+      <div className="primary-container">
         <Outlet />
       </div>
       <Footer />
