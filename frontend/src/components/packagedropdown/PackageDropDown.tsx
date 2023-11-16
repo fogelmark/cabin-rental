@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Overlay from '../overlay/Overlay'
-import './PackageDropDown.scss'
+import '../../assets/styles/components/_packagedropdown.scss'
 
 type PackageDropDownProps = {
   selectedPackage: string
@@ -19,9 +19,12 @@ const PackageDropDown = ({ selectedPackage, onSelectedPackage }: PackageDropDown
 
   return (
     <>
-      <div className='check-in-out-container'>
+      <div className='check-in-out-container package' onClick={() => setOpen((prevOpen) => !prevOpen)}>
         <div>Package</div>
-        <div className='current-choice' onClick={() => setOpen((prevOpen) => !prevOpen)}>{selectedPackage}</div>
+        <div>
+          <div className='current-choice'>{selectedPackage}</div>
+          <i className="fa-solid fa-chevron-down"></i>
+        </div>
       </div>
 
       {open && (

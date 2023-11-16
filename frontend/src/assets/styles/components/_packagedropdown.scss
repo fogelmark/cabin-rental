@@ -1,0 +1,46 @@
+@use '../abstracts' as *;
+
+.package-dropdown {
+  width: min(100%);
+  background-color: $offwhite;
+  box-shadow: $drop-shadow;
+}
+
+@media (min-width: 470px) {
+  .package-dropdown {
+    width: max(463px);
+  }
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+.package-choices {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+
+  li {
+    width: 100%;
+    text-align: center;
+
+    &:hover {
+      color: #fff;
+      background-color: #5f5f5f;
+    }
+  }
+}
+
+.selected {
+  background-color: #5f5f5f;
+  color: #fff;
+}
+
+.current-choice {
+  text-transform: capitalize;
+  color: $gray-medium;
+}

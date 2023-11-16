@@ -1,0 +1,79 @@
+@use '../abstracts/' as *;
+
+.calendar,
+.package-dropdown {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 230px;
+  box-shadow: $drop-shadow;
+  z-index: 2;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.current-date {
+  color: $gray-medium;
+}
+
+.check-in-out-container.check-in,
+.check-in-out-container.check-out {
+  border-top: 1px solid $gray-light;
+  border-bottom: 1px solid $gray-light;
+  cursor: pointer;
+
+  &:hover {
+    color: $gray-medium;
+  }
+}
+
+.check-in-out-container.check-in {
+  border-right: 1px solid $gray-light;
+}
+
+.check-in-out-container.package {
+  border-bottom: 1px solid $gray-light;
+}
+
+.check-in-out-container {
+  padding: .5rem 1rem;
+
+  div:last-of-type {
+    @include flex(space-between, center);
+  }
+}
+
+@media (min-width: 991px) {
+
+  .calendar,
+  .package-dropdown {
+    top: 110px;
+  }
+}
+
+@media (max-width: 470px) {
+  .calendar {
+    width: 100%;
+  }
+
+  .rdrMonth {
+    width: 100% !important;
+  }
+
+  .rdrCalendarWrapper {
+    width: 100% !important;
+  }
+}
+
+.rdrCalendarWrapper {
+  font-size: 16px !important;
+  border-radius: 10px !important;
+}
+
+.rdrDateDisplayItemActive {
+  background-color: #ffffff !important;
+}
+
+.rdrDateDisplayItemActive input {
+  color: #000000 !important;
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DateRange } from 'react-date-range';
 import { addDays, format } from 'date-fns';
-import './Calendar.scss';
+import '../../assets/styles/components/_calendar.scss'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import Overlay from '../overlay/Overlay';
@@ -50,17 +50,23 @@ const Calendar = () => {
 
   return (
     <>
-      <div className='check-in-out-container'>
+      <div className='check-in-out-container check-in' onClick={() => setOpen((prevOpen) => !prevOpen)}>
         <div>Check In</div>
-        <div onClick={() => setOpen((prevOpen) => !prevOpen)}>
-          {dates.checkIn}
+        <div>
+          <div className='current-date'>
+            {dates.checkIn}
+          </div>
+          <i className="fa-solid fa-chevron-down"></i>
         </div>
       </div>
 
-      <div className='check-in-out-container'>
+      <div className='check-in-out-container check-out' onClick={() => setOpen((prevOpen) => !prevOpen)}>
         <div>Check Out</div>
-        <div onClick={() => setOpen((prevOpen) => !prevOpen)}>
-          {dates.checkOut}
+        <div>
+          <div className='current-date'>
+            {dates.checkOut}
+          </div>
+          <i className="fa-solid fa-chevron-down"></i>
         </div>
       </div>
 

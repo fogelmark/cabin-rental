@@ -1,18 +1,10 @@
-.header-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #eee;
-  width: 100%;
-  padding: 1rem;
-}
+@use '../abstracts' as *;
 
-.cabin-search-widget {
-  // position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 500px;
+.header-container {
+  @include flex(center, center, column);
+  // width: 100%;
+  // padding: 1rem;
+  // height: min(90vh);
+  height: 100%;
   border: 1px solid red;
-  border-radius: 10px;
 }

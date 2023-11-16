@@ -1,7 +1,7 @@
 @use '../abstracts' as *;
 
 .footer-grid {
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   padding: 2rem;
@@ -14,7 +14,7 @@
   grid-column: span 3;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 991px) {
   .footer-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -48,12 +48,6 @@
   font-size: 33px;
   color: $primary-yellow;
 }
-
-// .fa-location-dot,
-// .fa-phone,
-// .fa-envelope {
-
-// }
 
 .fa-brands {
   cursor: pointer;
@@ -133,6 +127,7 @@ h4 {
   justify-items: center;
   gap: 1rem;
   color: $white;
+  justify-self: center;
 }
 
 .grid-item.newsletter:nth-child(2) {
@@ -143,10 +138,6 @@ h4 {
   border-left: 1px solid $black;
 }
 
-.input-group {
-  width: min(95%);
-}
-
 /* NEWSLETTER GRID END */
 
 /* COPYRIGHT GRID START */
@@ -155,6 +146,10 @@ h4 {
   justify-items: center;
   align-items: center;
   grid-template-rows: max-content;
+
+  p {
+    text-align: center;
+  }
 }
 
 .grid-item.copyright:nth-child(1) {

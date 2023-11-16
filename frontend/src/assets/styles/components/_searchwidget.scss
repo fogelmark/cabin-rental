@@ -1,0 +1,99 @@
+@use '../abstracts' as *;
+
+.cabin-search-widget {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  box-shadow: $drop-shadow;
+  background-color: $offwhite;
+  width: min(95%);
+  border-radius: 10px;
+  padding: 1rem 0;
+  margin-top: 1rem;
+}
+
+.btn-widget {
+  border-radius: 2rem;
+  background-color: $primary-yellow;
+  width: min(95%);
+  grid-column: 1 / span 2;
+  grid-row: 3 / 3;
+  justify-self: center;
+  margin: 1rem 0 0 0;
+
+  &:hover {
+    background-color: $primary-yellow-hover;
+  }
+}
+
+.fa-chevron-down {
+  color: $gray-medium;
+  font-size: 1rem;
+}
+
+.check-in-out-container.package {
+  grid-column: 1 / span 2;
+  grid-row: 2 / 2;
+  cursor: pointer;
+
+  &:hover {
+    color: $gray-medium;
+  }
+}
+
+.search-icon {
+  display: none;
+}
+
+@media (min-width: 991px) {
+
+  .cabin-search-widget {
+    grid-template-columns: 1fr 1fr 1fr 15%;
+    width: max(65%);
+  }
+
+  .check-in-out-container.check-in {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+    // border-right: 1px solid $gray-light;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .check-in-out-container.check-out {
+    grid-column: 2 / 2;
+    grid-row: 1 / 1;
+    border-right: 1px solid $gray-light;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .check-in-out-container.package {
+    grid-column: 3 / 3;
+    grid-row: 1 / 1;
+    border-right: 1px solid $gray-light;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .btn-widget {
+    align-self: center;
+    margin: 0;
+    grid-column: 4 / 4;
+    grid-row: 1 / 1;
+    display: none;
+  }
+
+  .search-icon {
+    @include flex(center, center);
+
+    .fa-magnifying-glass {
+      color: $black;
+      cursor: pointer;
+
+      &:hover {
+        color: $gray-medium;
+      }
+    }
+  }
+}
