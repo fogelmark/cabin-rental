@@ -4,10 +4,37 @@
   @include flex(center, center, column);
 }
 
+h2:first-of-type {
+  margin-top: 5rem;
+}
+
+h2 {
+  text-align: center;
+}
+
+.frontpage-wrapper {
+  @include flex(_, center, column, 5rem);
+  width: min(100% - 3rem);
+  margin-inline: auto;
+}
+
 @media (max-width: 992px) {
   .headline-container {
     display: none;
   }
+
+  .frontpage-wrapper {
+    gap: 2rem;
+  }
+
+  h2:first-of-type {
+    margin-top: 4rem;
+  }
+
+  h2 {
+    margin-top: 2rem;
+  }
+
 }
 
 @media (min-width: 991px) {

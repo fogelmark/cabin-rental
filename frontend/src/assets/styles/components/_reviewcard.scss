@@ -1,0 +1,60 @@
+@use '../abstracts' as *;
+
+.review-card-container {
+  @include flex(center, center, 2rem);
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-bottom: 5rem;
+}
+
+.review-card {
+  @include flex(center, center, column, .5rem);
+  position: relative;
+  padding: 4rem 1rem 1rem 1rem;
+  margin-top: 3rem;
+  width: 20rem;
+  min-height: 350px;
+  border-radius: 10px;
+  background-color: #fcfcfc;
+  box-shadow: $drop-shadow;
+
+  img {
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  p:first-of-type {
+    font-weight: $weight-bold;
+  }
+
+  p:last-of-type {
+    text-align: center;
+  }
+
+  i {
+    color: #e4a935;
+  }
+}
+
+// .review-card:nth-child(2),
+// .review-card:nth-child(3) {
+//   margin-top: 3rem;
+// }
+
+// @media (min-width: 720px) {
+
+//   .review-card:nth-child(3) {
+//     margin-top: 3rem;
+//   }
+// }
+
+// @media (min-width: 991px) {
+
+//   .review-card:nth-child(2),
+//   .review-card:nth-child(3) {
+//     margin-top: 3rem;
+//   }
+// }
