@@ -1,16 +1,14 @@
 import { useState } from "react"
 import Calendar from "../components/calendar/Calendar"
 import PackageDropDown from "../components/packagedropdown/PackageDropDown"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import '../assets/styles/layouts/_home.scss';
 import '../assets/styles/components/_searchwidget.scss'
-import Navbar from "../components/navbar/Navbar";
+import '../assets/styles/components/_homecard.scss'
+import InfoCard from "../components/cards/rentals/InfoCard";
 
 const Home = () => {
   const navigate = useNavigate()
-
-  const location = useLocation()
-  const isHomePage = location.pathname === '/'
 
   const [selectedPackage, setSelectedPackage] = useState('all')
 
@@ -41,16 +39,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="box-container">
-        <div className="box"></div>
-        <div className="box"></div>
-        <div className="box"></div>
-        <div className="box"></div>
-        <div className="box"></div>
-        <div className="box"></div>
-        <div className="box"></div>
-        <div className="box"></div>
-      </div>
+      <h1>Tailored Retreats for Every Budget</h1>
+      <InfoCard />
     </>
   )
 }
