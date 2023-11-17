@@ -1,10 +1,13 @@
 import LoginModal from '../login/LoginModal'
 import '../../assets/styles/components/_nav.scss'
 import logo from '../../assets/images/nn_main_logo.png'
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
+
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
 
   const [_, setIsOpen] = useState(false)
 
@@ -13,12 +16,11 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav className={`navbar ${isHomePage ? 'nav-transparent' : 'nav-standard'} navbar-expand-lg`}>
       <div className="container-fluid">
         <Link to="/">
-          <img className='nav-logo' src={logo} alt="a logo of a house and the name of the website" />
+          <img className={`nav-logo  ${isHomePage ? 'logo-large' : 'logo-small'}`} src={logo} alt="a logo of a house and the name of the website" />
         </Link>
-        {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> */}
         <div data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <input type="checkbox" id="checkbox" onClick={handleToggle} />
           <label htmlFor="checkbox" className="toggle">

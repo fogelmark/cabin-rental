@@ -30,13 +30,13 @@ li {
 
     &:hover {
       color: #fff;
-      background-color: #5f5f5f;
+      background-color: $gray-medium;
     }
   }
 }
 
 .selected {
-  background-color: #5f5f5f;
+  background-color: $gray-medium;
   color: #fff;
 }
 

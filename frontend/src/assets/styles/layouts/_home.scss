@@ -1,10 +1,48 @@
 @use '../abstracts' as *;
 
-.header-container {
+.header {
   @include flex(center, center, column);
-  // width: 100%;
-  // padding: 1rem;
-  // height: min(90vh);
-  height: 100%;
-  border: 1px solid red;
+}
+
+.headline-container {
+  display: none;
+}
+
+
+.box-container {
+  @include flex(center, center, row, 2rem);
+  flex-wrap: wrap;
+  padding: 5rem;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  border: 1px solid;
+  background-color: green;
+}
+
+@media (min-width: 991px) {
+  .hero {
+    background-image: url('../../images/header-cabin2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-top: 300px;
+    padding-bottom: 100px;
+  }
+
+  .headline-container {
+    position: absolute;
+    right: 1rem;
+    top: 7rem;
+    text-shadow: 2px 2px #00000083;
+  }
+
+  .headline {
+    font-size: 45px;
+    font-weight: $weight-regular;
+    font-family: $heading-font;
+    color: $white;
+  }
 }

@@ -1,20 +1,36 @@
 @use '../abstracts' as *;
 
-.navbar {
+.nav-standard {
+  @include flex(space-between);
+  padding: .5rem 2rem;
+  width: 100%;
+  background-color: $primary-green;
+}
+
+.nav-transparent {
   @include flex(space-between);
   background-color: $primary-green;
+  width: 100%;
   padding: .5rem 2rem;
 }
 
 .nav-logo {
   @include base-image;
+}
+
+.logo-small {
   width: 80px;
+}
+
+.logo-large {
+  width: 120px;
 }
 
 .user-link {
   @include font($body-font, 20px, $primary-yellow, $weight-bold);
   cursor: pointer;
   margin: 0 1rem 0 0;
+  text-shadow: 2px 2px 2px #00000080;
 
   &:hover {
     color: $primary-yellow-hover;
@@ -94,11 +110,34 @@
   }
 }
 
-// MQ +850px
+/* IF SCREEN > 992px */
 @media (min-width: 992px) {
 
   .toggle,
   #checkbox {
     display: none;
+  }
+
+  .nav-transparent {
+    @include flex(space-between);
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    width: 100%;
+    padding: .5rem 2rem;
+  }
+}
+
+/* IF SCREEN < 991px */
+@media (max-width: 991px) {
+  .nav-transparent {
+    @include flex(space-between);
+    background-color: $primary-green;
+    width: 100%;
+    padding: .5rem 2rem;
+  }
+
+  .logo-large {
+    width: 80px;
   }
 }

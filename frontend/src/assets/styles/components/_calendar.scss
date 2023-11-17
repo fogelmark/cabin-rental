@@ -5,7 +5,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 230px;
+  top: 210px;
   box-shadow: $drop-shadow;
   z-index: 2;
   border-radius: 10px;
@@ -47,7 +47,7 @@
 
   .calendar,
   .package-dropdown {
-    top: 110px;
+    top: 90px;
   }
 }
 
