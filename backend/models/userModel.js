@@ -77,8 +77,8 @@ exports.loginUser = async (req, res) => {
       }
 
       const token = auth.generateToken(user)
-      const displayName = user.firstName
-      res.status(200).json({ token, displayName })
+      // const displayName = user.firstName
+      res.status(200).json({ token })
     })
   } catch (error) {
     res.status(500).json({

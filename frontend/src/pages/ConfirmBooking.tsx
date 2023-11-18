@@ -22,7 +22,7 @@ const ConfirmBooking = () => {
   const { slug } = useParams()
   const navigate = useNavigate()
 
-  const [isSuccess, setIsSuccess] = useState(false)
+  const [, setIsSuccess] = useState(false)
 
 
   useEffect(() => {
@@ -38,6 +38,7 @@ const ConfirmBooking = () => {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
 
     try {
+      console.log("Authorization Token:", user);
       const res = await axios.post(`http://localhost:7070/api/bookings/${oneRental?._id}/create`, {
         ...data,
         checkIn: reservation?.checkIn,
@@ -55,7 +56,7 @@ const ConfirmBooking = () => {
         navigate(`/payment-confirmation/${bookingDetails._id}`)
       }
     } catch (error) {
-      console.log('Error adding product', error);
+      console.log('Something went wrong when trying to confirm booking...', error);
     }
   }
 

@@ -28,8 +28,8 @@ const LoginModal = () => {
     e.preventDefault()
     try {
       const res = await axios.post('http://localhost:7070/api/users/login', formData)
-      const user = res.data
-      localStorage.setItem('token', JSON.stringify(res.data))
+      const user = res.data.token
+      localStorage.setItem('token', JSON.stringify(user))
       setUser(user)
     } catch (error) {
       console.log('Login error', error);
