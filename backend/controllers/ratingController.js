@@ -4,7 +4,7 @@ const auth = require('../authentication/auth')
 const ratingModel = require('../models/ratingModel')
 
 router.get('/', ratingModel.getAllRatings)
-router.get('/:id', ratingModel.getRatingById)
+router.get('/:rentalId', ratingModel.getRatingById)
 
 router.post('/:id/create', auth.verifyToken, ratingModel.addRating)
 

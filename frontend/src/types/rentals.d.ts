@@ -6,6 +6,7 @@ type Rentals = {
   imageURL: string
   price: number
   slug: string
+  squarems: string
 }
 
 type RentalsCardProps = {

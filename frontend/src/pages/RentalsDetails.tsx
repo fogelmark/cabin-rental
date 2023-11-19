@@ -5,7 +5,7 @@ import { useReservationContext } from '../context/reservationContext'
 import { Link } from 'react-router-dom'
 import axios from "axios"
 import { useUserContext } from '../context/userContext'
-import LoginModal from '../components/login/loginModal'
+import CarouselDetails from '../components/carousel/CarouselDetails'
 
 const RentalsDetails = () => {
 
@@ -95,6 +95,7 @@ const RentalsDetails = () => {
 
   return (
     <>
+      <CarouselDetails />
       <div>{rental?.name}</div>
       <div>{rental?.desc}</div>
       <div>{rental?.package}</div>

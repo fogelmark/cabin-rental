@@ -14,7 +14,6 @@ type RentalsContextType = {
   setRentals: React.Dispatch<React.SetStateAction<Rentals[]>>
   setOneRental: React.Dispatch<React.SetStateAction<Rentals | null>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
-  // fetchRentalBySlug: (slug: string) => Promise<Rentals | null>
   fetchRentalBySlug: (slug: string) => Promise<any>
 }
 
@@ -35,6 +34,8 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  console.log(rentals);
+
   useEffect(() => {
     const fetchRentals = async () => {
       try {
@@ -51,7 +52,6 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
   }, [])
 
   const fetchRentalBySlug = async (slug: string) => {
-    // setLoading(true)
     try {
       const res = await axios.get(`http://localhost:7070/api/rentals/slug/${slug}`)
       setOneRental(res.data)
@@ -69,7 +69,7 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
     setRentals,
     setOneRental,
     setLoading,
-    fetchRentalBySlug,
+    fetchRentalBySlug
   }
 
   return (
@@ -78,14 +78,3 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
     </RentalsContext.Provider>
   )
 }
-// const fetchRentalBySlug = async (slug: string): Promise<Rentals | null> => {
-//   try {
-//     const res = await axios.get(`http://localhost:7070/api/rentals/slug/${slug}`)
-//     setLoading(false)
-//     return res.data
-//   } catch (error) {
-//     setError('Error fetching rental')
-//     setLoading(false)
-//     return null
-//   }
-// }

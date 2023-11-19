@@ -36,7 +36,9 @@ const LoginModal = () => {
     }
   }
 
-  console.log(user);
+  if (user) {
+    console.log(user);
+  }
 
   return (
     <>

@@ -6,15 +6,15 @@ const date = require('date-and-time')
 // CREATE RENTAL
 exports.createRental = async (req, res) => {
   try {
-    const { name, desc, package, imageURL, price } = req.body
+    const { name, desc, package, imageURL, price, squarems } = req.body
 
-    if (!name || !desc || !package || !imageURL || !price) {
+    if (!name || !desc || !package || !imageURL || !price || !squarems) {
       return res.status(400).json({
         message: 'You need to enter all fields'
       })
     }
 
-    const rental = await Rental.create({name, desc, package, imageURL, price})
+    const rental = await Rental.create({name, desc, package, imageURL, price, squarems})
     res.status(201).json({
       message: 'Rental created successfully',
       rental

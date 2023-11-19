@@ -51,8 +51,7 @@ exports.updateRating = async (req, res) => {
 // GET RATING BY ID
 exports.getRatingById = async (req, res) => {
   try {
-    const { id } = req.params
-    const rating = await Rating.findById(id)
+    const rating = await Rating.findOne({ rentalId: req.params.rentalId})
     res.status(200).json(rating)
   } catch (error) {
     res.status(500).json({
