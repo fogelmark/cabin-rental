@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useRentalsContext } from "../context/rentalContext"
 import { useReservationContext } from '../context/reservationContext'
-import { Link } from 'react-router-dom'
 import axios from "axios"
 import { useUserContext } from '../context/userContext'
 import CarouselDetails from '../components/carousel/CarouselDetails'
+import Facilities from '../components/facilities/Facilities'
+import '../assets/styles/layouts/_rentaldetails.scss'
+import '../assets/styles/components/_facilities.scss'
+import '../assets/styles/components/_included.scss'
+import '../assets/styles/components/_reviewcardsmall.scss'
+import Included from '../components/facilities/Included'
+import ReviewCardSmall from '../components/cards/testimonials/ReviewCardSmall'
 
 const RentalsDetails = () => {
+
+  const navigate = useNavigate()
 
   const { slug } = useParams()
   const { loading, setLoading } = useRentalsContext()
@@ -60,7 +68,6 @@ const RentalsDetails = () => {
         const price = Number(rental?.price);
         const newTotalPrice = calculateTotalPrice(nights, price);
         setTotalPrice(newTotalPrice);
-        console.log(newTotalPrice);
     }
   }, [reservation, rental]);
 
@@ -80,43 +87,48 @@ const RentalsDetails = () => {
       totalPrice: totalPrice,
     };
 
-    console.log(totalPrice);
+    navigate(`/confirm-booking/${rental?.slug}`)
 
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(reservationData));
 
     setReservation(reservationData);
   };
 
-
-
   if (loading) {
     return <div>Loading...</div>
   }
 
   return (
-    <>
-      <CarouselDetails />
-      <div>{rental?.name}</div>
-      <div>{rental?.desc}</div>
-      <div>{rental?.package}</div>
-      <div>{rental?.price}</div>
-
-      <div>
-        Check-in: {reservation?.checkIn}
-        <br />
-        Check-out: {reservation?.checkOut}
-        <br />
-        Total: {totalPrice}
-        <br />
-        {user ? (
-          <Link to={`/confirm-booking/${rental?.slug}`}>
-            <button onClick={handleReservation}>Reserve</button>
-          </Link>
-        ) : (
-          <button onClick={handleReservation} data-bs-toggle="modal" data-bs-target="#exampleModal">Reserve</button>
-        )}
+    <div className='details-wrapper'>
+      <CarouselDetails rental={rental} />
+      <Facilities />
+      <Included />
+      <ReviewCardSmall />
+      <div className='sticky-info-container'>
+        <div className="info">
+          <div>
+            <p>
+              {rental?.desc}
+            </p>
+            <div>
+              2x <i className="fa-solid fa-user"></i>
+            </div>
+          </div>
+          <div>Check-in: {reservation?.checkIn}</div>
+          <div>Check-out: {reservation?.checkOut}</div>
+        </div>
+        <div className='button-group'>
+          <p>
+            {totalPrice} SEK
+          </p>
+          {user ? (
+            <button className='button' onClick={handleReservation}>Reserve</button>
+          ) : (
+            <button onClick={handleReservation} data-bs-toggle="modal" data-bs-target="#exampleModal">Reserve</button>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 

@@ -1,0 +1,58 @@
+@use '../abstracts' as *;
+@use '../abstracts/buttons' as *;
+
+.details-wrapper {
+  position: relative;
+  @include flex(_, _, column, 1rem);
+  // width: min(100% - 3rem);
+  margin-inline: auto;
+}
+
+.sticky-info-container {
+  @include flex(space-between, center);
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  padding: 1rem;
+  background-color: $offwhite;
+}
+
+.info {
+  border-radius: 10px;
+  box-shadow: $drop-shadow;
+  padding: .5rem;
+
+  div:first-of-type {
+    @include flex(space-between);
+
+    i {
+      font-size: 1rem;
+      color: $black;
+      margin-left: .5rem;
+    }
+  }
+}
+
+// h3 {
+//   margin-left: 1rem;
+// }
+
+.button-group {
+  @include flex(space-around, center, column, 1rem);
+
+  p {
+    font-weight: $weight-bold;
+  }
+
+  button {
+    border: none;
+    padding: $button-padding;
+    border-radius: $button-radius;
+    background-color: $primary-yellow;
+    box-shadow: 0px 2px 2px #00000079;
+
+    &:hover {
+      background-color: $primary-yellow-hover;
+    }
+  }
+}

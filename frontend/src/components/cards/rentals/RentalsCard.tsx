@@ -25,8 +25,7 @@ const RentalsCard = ({ rental }: RentalsCardProps) => {
   useEffect(() => {
     const fetchRating = async () => {
       try {
-        const res = await axios.get(`http://localhost:7070/api/ratings/${rental._id}`)
-        console.log(res.data);
+        const res = await axios.get(`http://localhost:7070/api/ratings/${rental?._id}`)
         setRating(res.data)
       } catch (error) {
         console.log('Error', error);
@@ -39,7 +38,7 @@ const RentalsCard = ({ rental }: RentalsCardProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/rentals/${rental.slug}`);
+    navigate(`/rentals/${rental?.slug}`);
   };
 
   const renderStars = () => {
@@ -58,7 +57,7 @@ const RentalsCard = ({ rental }: RentalsCardProps) => {
     <div className="rental-card-container">
       <div className="rental-card">
         <div className="image-container">
-          <img className="rental-image" src={rental.imageURL} />
+          <img className="rental-image" src={rental?.imageURL} />
           {/* {loading ? (<Skeleton height={330} width={330} />) : ()} */}
           {/* {hasImage && (
             <img src={imageMap.standard} alt="" />
@@ -67,14 +66,14 @@ const RentalsCard = ({ rental }: RentalsCardProps) => {
         <div className='like-icon'>
           <i className="fa-regular fa-heart"></i>
         </div>
-        <div className='rental-package'>{rental.package}</div>
-        <div className='rental-price'>{rental.price} SEK per night</div>
+        <div className='rental-package'>{rental?.package}</div>
+        <div className='rental-price'>{rental?.price} SEK per night</div>
         <div className='sub-container'>
-          <div className='rental-name'>{rental.name}</div>
+          <div className='rental-name'>{rental?.name}</div>
           <div className='meter-room-group'>
-            <div className='rental-squarems'>{rental.squarems}</div>
+            <div className='rental-squarems'>{rental?.squarems}</div>
             -
-            <div className='rental-desc'>{rental.desc}</div>
+            <div className='rental-desc'>{rental?.desc}</div>
           </div>
           <div className='rating-button-group'>
             <div className="rental-rating">{renderStars()}</div>

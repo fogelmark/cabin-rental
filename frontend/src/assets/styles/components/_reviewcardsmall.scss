@@ -1,0 +1,38 @@
+@use '../abstracts' as *;
+
+.review-container {
+  padding: 0 1rem;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-rows: 115px;
+  height: 115px;
+  gap: .5rem;
+  overflow: hidden;
+  transition: height .5s ease;
+  margin-top: 1rem;
+}
+
+.review {
+  height: min(115px);
+  // border-bottom: 1px solid $gray-light;
+  overflow: hidden;
+
+  img {
+    margin-right: .5rem;
+    width: 50px;
+  }
+}
+
+.review-text {
+  margin: .5rem 0
+}
+
+.open {
+  height: calc(115px * 3 + 1rem);
+}
+
+.border-div {
+  border-bottom: 1px solid $gray-light;
+}

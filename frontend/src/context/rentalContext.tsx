@@ -34,8 +34,6 @@ export const RentalsProvider = ({ children }: RentalsContextProviderProps) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  console.log(rentals);
-
   useEffect(() => {
     const fetchRentals = async () => {
       try {

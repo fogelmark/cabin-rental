@@ -10,7 +10,6 @@ const PaymentConfirmation = () => {
   useEffect(() => {
     if (id) {
       fetchBookingById(id)
-      console.log(bookings);
     }
   }, [])
 

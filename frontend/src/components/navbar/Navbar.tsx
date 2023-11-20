@@ -8,7 +8,6 @@ const Navbar = () => {
 
   const location = useLocation()
   const isHomePage = location.pathname === '/'
-  console.log(isHomePage);
 
   const [_, setIsOpen] = useState(false)
 

@@ -1,0 +1,27 @@
+@use '../abstracts' as *;
+
+.facilities-container {
+  padding: 0 1rem;
+
+}
+
+.icon-grid {
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: .5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid $gray-light;
+
+  div {
+    @include flex(_, center);
+  }
+
+  i,
+  svg.icon {
+    margin-right: .5rem;
+    font-size: 30px;
+    color: $black;
+  }
+}

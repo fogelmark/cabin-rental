@@ -10,5 +10,5 @@ type Rentals = {
 }
 
 type RentalsCardProps = {
-  rental: Rentals
+  rental: Rentals | null
 }

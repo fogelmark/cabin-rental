@@ -1,0 +1,53 @@
+@use '../abstracts' as *;
+
+.included-container {
+  padding: 0 1rem;
+
+  .border-div {
+    border-bottom: 1px solid $gray-light;
+  }
+}
+
+
+.included-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: .5rem;
+  padding: 1rem;
+  height: 70px;
+  overflow: hidden;
+  transition: height .5s ease;
+  cursor: pointer;
+  margin-bottom: .5rem;
+
+  div {
+    @include flex(_, center);
+  }
+}
+
+.expandable {
+  @include flex(space-between, center);
+  // margin: 0 0 .5rem 1rem;
+  cursor: pointer;
+  width: 110px;
+}
+
+svg.chevron {
+  color: $primary-green;
+  transition: transform .5s ease;
+}
+
+.up {
+  transform: rotate(-180deg)
+}
+
+.show {
+  height: 200px;
+}
+
+.icon {
+  margin-right: .5rem;
+  font-size: 20px;
+  color: $primary-green;
+}
