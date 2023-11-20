@@ -4,10 +4,19 @@ import axios from "axios";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { useRentalsContext } from "../../../context/rentalContext";
+// import budgetCabin from '../../../assets/images/cabins/cabin-budget-1.png';
+// import standardCabin from '../../../assets/images/info-standard.png';
 
 
 
 const RentalsCard = ({ rental }: RentalsCardProps) => {
+
+  // const imageMap = {
+  //   'budget': budgetCabin,
+  //   'standard': standardCabin
+  // }
+
+  // const hasImage = imageMap.hasOwnProperty(rental.package)
 
   const [rating, setRating] = useState<Ratings | null>(null)
 
@@ -49,11 +58,11 @@ const RentalsCard = ({ rental }: RentalsCardProps) => {
     <div className="rental-card-container">
       <div className="rental-card">
         <div className="image-container">
-          {loading ? (
-            <Skeleton height={330} width={330} />
-          ) : (
-            <img className="rental-image" src={rental.imageURL} />
-          )}
+          <img className="rental-image" src={rental.imageURL} />
+          {/* {loading ? (<Skeleton height={330} width={330} />) : ()} */}
+          {/* {hasImage && (
+            <img src={imageMap.standard} alt="" />
+          )} */}
         </div>
         <div className='like-icon'>
           <i className="fa-regular fa-heart"></i>
