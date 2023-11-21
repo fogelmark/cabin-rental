@@ -79,7 +79,7 @@ const ConfirmBooking = () => {
           {user ? (
             <button className='btn confirm-booking' type='submit'>CONFIRM BOOKING</button>
           ) : (
-            <button className={`btn confirm-booking disabled`}>LOGIN PLEASE</button>
+            <button className={`btn confirm-booking`} data-bs-toggle="modal" data-bs-target="#exampleModal">CONFIRM BOOKING</button>
           )}
         </div>
       </form>

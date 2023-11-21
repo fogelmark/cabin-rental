@@ -125,9 +125,9 @@ const RentalsDetails = () => {
             </p>
           </div>
           {user ? (
-            <button className='button' onClick={handleReservation}>RESERVE</button>
+            <button className='btn btn-reserve' onClick={handleReservation}>RESERVE</button>
           ) : (
-            <button onClick={handleReservation} data-bs-toggle="modal" data-bs-target="#exampleModal">Reserve</button>
+            <button className='btn btn-reserve' onClick={handleReservation} data-bs-toggle="modal" data-bs-target="#exampleModal">RESERVE</button>
           )}
         </div>
       </div>

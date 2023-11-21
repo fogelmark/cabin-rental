@@ -44,7 +44,7 @@
     font-weight: $weight-bold;
   }
 
-  button {
+  .btn-reserve {
     border: none;
     padding: $button-padding;
     border-radius: $button-radius;
@@ -124,7 +124,7 @@
       display: inline-block;
     }
 
-    button {
+    .btn-reserve {
       border: none;
       width: 100%;
       padding: $button-padding;
