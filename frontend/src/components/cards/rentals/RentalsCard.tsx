@@ -78,7 +78,7 @@ const RentalsCard = ({ rental }: RentalsCardProps) => {
           <div className='rating-button-group'>
             <div className="rental-rating">{renderStars()}</div>
             <div>
-              <button className='button-deal' onClick={handleClick}>View deal</button>
+              <button className='button-deal' onClick={handleClick}>VIEW DEAL</button>
             </div>
           </div>
         </div>

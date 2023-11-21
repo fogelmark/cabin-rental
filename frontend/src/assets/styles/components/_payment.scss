@@ -1,0 +1,38 @@
+@use '../abstracts' as *;
+
+.payment-container {
+  padding: .5rem;
+  margin-top: 1rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .3rem 0;
+  }
+
+  p {
+    font-weight: $weight-bold;
+  }
+
+  img {
+    width: 100px;
+  }
+
+  span {
+    color: firebrick;
+  }
+}
+
+@media (min-width: 991px) {
+  .payment-container {
+
+    p {
+      margin-left: 1.5rem;
+    }
+
+    img {
+      width: 150px;
+    }
+  }
+}

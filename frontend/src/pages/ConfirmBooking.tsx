@@ -3,19 +3,21 @@ import { useRentalsContext } from "../context/rentalContext"
 import { useNavigate, useParams } from "react-router-dom"
 import { useReservationContext } from '../context/reservationContext'
 import { useUserContext } from '../context/userContext'
+import { useBookingsContext } from '../context/bookingContext'
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { FormData } from '../types/formtypes'
 import axios from 'axios'
 import BookingForm from '../components/forms/bookingform/BookingForm'
 import PaymentMethods from '../components/payment/PaymentMethods'
 import BookingInfo from '../components/booking/BookingInfo'
-import { useBookingsContext } from '../context/bookingContext'
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { FormData } from '../types/formtypes'
+import '../assets/styles/layouts/_mainbookinginfo.scss'
 
 const ConfirmBooking = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
   const { fetchRentalBySlug, oneRental, loading, setLoading } = useRentalsContext()
+  const [, setShowLoginModal] = useState(false)
   const { reservation } = useReservationContext()
   const { setBookings } = useBookingsContext()
   const { user } = useUserContext()
@@ -38,7 +40,11 @@ const ConfirmBooking = () => {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
 
     try {
-      console.log("Authorization Token:", user);
+      if (!user) {
+        setShowLoginModal(true)
+        return
+      }
+
       const res = await axios.post(`http://localhost:7070/api/bookings/${oneRental?._id}/create`, {
         ...data,
         checkIn: reservation?.checkIn,
@@ -61,15 +67,23 @@ const ConfirmBooking = () => {
   }
 
   return (
-    <>
+    <div className='main-booking-info-wrapper'>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>ConfirmBooking</h1>
+        <p className='booking-info-title'>Booking Information</p>
         <BookingInfo register={register} reservation={reservation} oneRental={oneRental} />
-        <BookingForm register={register} errors={errors} />
-        <PaymentMethods register={register} errors={errors} />
-        <button className='btn btn-primary' type='submit'>Confirm booking</button>
+        <div className='form-payment-container'>
+          <BookingForm register={register} errors={errors} />
+          <PaymentMethods register={register} errors={errors} />
+        </div>
+        <div className='button-container'>
+          {user ? (
+            <button className='btn confirm-booking' type='submit'>CONFIRM BOOKING</button>
+          ) : (
+            <button className={`btn confirm-booking disabled`}>LOGIN PLEASE</button>
+          )}
+        </div>
       </form>
-    </>
+    </div>
   )
 }
 

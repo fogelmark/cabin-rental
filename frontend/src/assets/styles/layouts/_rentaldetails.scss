@@ -4,7 +4,6 @@
 .details-wrapper {
   position: relative;
   @include flex(_, _, column, 1rem);
-  // width: min(100% - 3rem);
   margin-inline: auto;
 }
 
@@ -22,7 +21,7 @@
   box-shadow: $drop-shadow;
   padding: .5rem;
 
-  div:first-of-type {
+  .guests-info {
     @include flex(space-between);
 
     i {
@@ -33,12 +32,13 @@
   }
 }
 
-// h3 {
-//   margin-left: 1rem;
-// }
 
 .button-group {
   @include flex(space-around, center, column, 1rem);
+
+  .price-info {
+    @include flex(center, center, row, .5rem);
+  }
 
   p {
     font-weight: $weight-bold;
@@ -50,9 +50,92 @@
     border-radius: $button-radius;
     background-color: $primary-yellow;
     box-shadow: 0px 2px 2px #00000079;
+    width: 100%;
 
     &:hover {
       background-color: $primary-yellow-hover;
+    }
+  }
+}
+
+@media (min-width: 991px) {
+
+  .details-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: min(100% - 10rem);
+  }
+
+  .sticky-info-container {
+    @include flex(space-between, center, column);
+    height: fit-content;
+    grid-column: 2 / 2;
+    grid-row: 2 / 2;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: $drop-shadow;
+    position: relative;
+    bottom: 0;
+    padding: 1rem;
+    background-color: $white;
+    justify-self: end;
+  }
+
+  .info {
+    display: grid;
+    grid-template-columns: fit-content, 1fr;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0;
+    width: 100%;
+    box-shadow: none;
+
+    .guests-info {
+      @include flex(start, start, column);
+      grid-row: 1 / span 2;
+    }
+
+    div:nth-child(3) {
+      grid-column: 2 / 2;
+    }
+
+    .user-count {
+
+      i {
+        font-size: 1rem;
+        color: $black;
+        margin-left: .5rem;
+      }
+    }
+  }
+
+  .button-group {
+    @include flex(space-around, center, column, 1rem);
+    width: 100%;
+
+    .price-info {
+      @include flex(space-between, center);
+      width: 100%;
+      padding: 0 .5rem;
+    }
+
+
+    p:first-of-type {
+      display: inline-block;
+    }
+
+    button {
+      border: none;
+      width: 100%;
+      padding: $button-padding;
+      border-radius: $button-radius;
+      background-color: $primary-yellow;
+      box-shadow: 0px 2px 2px #00000079;
+
+
+      &:hover {
+        background-color: $primary-yellow-hover;
+      }
     }
   }
 }

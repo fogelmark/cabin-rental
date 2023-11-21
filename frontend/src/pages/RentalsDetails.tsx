@@ -106,23 +106,26 @@ const RentalsDetails = () => {
       <ReviewCardSmall />
       <div className='sticky-info-container'>
         <div className="info">
-          <div>
+          <div className='guests-info'>
             <p>
               {rental?.desc}
             </p>
-            <div>
+            <div className='user-count'>
               2x <i className="fa-solid fa-user"></i>
             </div>
           </div>
-          <div>Check-in: {reservation?.checkIn}</div>
-          <div>Check-out: {reservation?.checkOut}</div>
+          <div className='date-info'>Check-in: {reservation?.checkIn}</div>
+          <div className='date-info'>Check-out: {reservation?.checkOut}</div>
         </div>
         <div className='button-group'>
-          <p>
-            {totalPrice} SEK
-          </p>
+          <div className='price-info'>
+            <p>Total: </p>
+            <p>
+              {totalPrice} SEK
+            </p>
+          </div>
           {user ? (
-            <button className='button' onClick={handleReservation}>Reserve</button>
+            <button className='button' onClick={handleReservation}>RESERVE</button>
           ) : (
             <button onClick={handleReservation} data-bs-toggle="modal" data-bs-target="#exampleModal">Reserve</button>
           )}

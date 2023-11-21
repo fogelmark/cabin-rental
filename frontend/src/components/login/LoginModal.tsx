@@ -72,8 +72,8 @@ const LoginModal = () => {
                 <input value={formData.password} onChange={handleChange} type="password" name='password' className="form-control" id="password" autoComplete='new-password' />
               </div>
               <div className="mb-3 d-flex justify-content-between">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Register</button>
-                <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" >Login</button>
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">REGISTER</button>
+                <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" >LOGIN</button>
               </div>
             </form>
           </div>

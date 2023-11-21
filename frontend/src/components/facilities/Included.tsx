@@ -14,7 +14,7 @@ const Included = () => {
     <div className="included-container">
       <h3>Included in the package</h3>
       <div className='border-div'>
-        <div onClick={toggleAccordion} className={`included-grid ${isOpen ? 'show' : ''}`}>
+        <div onClick={toggleAccordion} className={`included-grid ${isOpen ? 'expand' : ''}`}>
           <div>
             <GoDotFill className='icon' />
             <p>Hot tub & sauna</p>

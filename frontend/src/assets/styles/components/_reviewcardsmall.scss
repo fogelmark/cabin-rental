@@ -16,7 +16,6 @@
 
 .review {
   height: min(115px);
-  // border-bottom: 1px solid $gray-light;
   overflow: hidden;
 
   img {
@@ -35,4 +34,14 @@
 
 .border-div {
   border-bottom: 1px solid $gray-light;
+}
+
+@media (min-width: 991px) {
+  .review-grid {
+    height: 100%;
+  }
+
+  .border-div {
+    border-bottom: none;
+  }
 }

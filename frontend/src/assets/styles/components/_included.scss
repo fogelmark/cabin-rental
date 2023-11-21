@@ -3,11 +3,11 @@
 .included-container {
   padding: 0 1rem;
 
-  .border-div {
-    border-bottom: 1px solid $gray-light;
-  }
 }
 
+.border-div {
+  border-bottom: 1px solid $gray-light;
+}
 
 .included-grid {
   display: grid;
@@ -28,7 +28,6 @@
 
 .expandable {
   @include flex(space-between, center);
-  // margin: 0 0 .5rem 1rem;
   cursor: pointer;
   width: 110px;
 }
@@ -42,7 +41,7 @@ svg.chevron {
   transform: rotate(-180deg)
 }
 
-.show {
+.expand {
   height: 200px;
 }
 
@@ -50,4 +49,24 @@ svg.chevron {
   margin-right: .5rem;
   font-size: 20px;
   color: $primary-green;
+}
+
+@media (min-width: 991px) {
+
+  .included-container {
+    grid-column: 1 / span 2;
+    grid-row: 3 / 3;
+  }
+
+  .included-grid {
+    height: 100%;
+  }
+
+  .border-div {
+    border-bottom: none;
+  }
+
+  .expandable {
+    display: none;
+  }
 }

@@ -1,0 +1,29 @@
+@use '../abstracts' as *;
+
+.booking-form-container {
+  padding: .5rem;
+
+  div {
+    @include flex(_, start, column);
+    padding: .2rem 0;
+
+    label {
+      font-weight: $weight-bold;
+      text-transform: capitalize;
+    }
+
+    input {
+      border-radius: 3px;
+      border: 1px solid $gray-light;
+    }
+
+    span {
+      text-transform: lowercase;
+      color: firebrick;
+    }
+
+    p:last-of-type {
+      text-transform: capitalize;
+    }
+  }
+}

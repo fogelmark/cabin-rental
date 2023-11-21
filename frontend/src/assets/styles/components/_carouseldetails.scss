@@ -21,10 +21,10 @@
 
 @media (min-width: 991px) {
   #carouselExampleIndicators {
-    width: 80%;
     height: calc(100lvh - 79px);
     overflow: hidden;
     margin-inline: auto;
+    grid-column: 1 / span 2;
   }
 
   .carousel-inner {
