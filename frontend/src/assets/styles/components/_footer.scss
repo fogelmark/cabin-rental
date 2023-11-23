@@ -1,8 +1,8 @@
 @use '../abstracts' as *;
 
 .footer-grid {
-  // position: relative;
-  // bottom: 0;
+  // position: sticky;
+  bottom: 0;
   width: 100%;
   padding: 2rem;
   display: grid;

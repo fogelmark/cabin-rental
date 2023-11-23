@@ -3,6 +3,7 @@
 .filteredrentals-wrapper {
   @include flex(_, center, column, 1.5rem);
   width: min(100% - 3rem);
+  // height: calc(100lvh - 79px);
   margin-inline: auto;
   padding: 1.5rem 0;
 }

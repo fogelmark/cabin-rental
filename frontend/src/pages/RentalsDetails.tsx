@@ -23,7 +23,7 @@ const RentalsDetails = () => {
   const { reservation, setReservation, LOCAL_STORAGE_KEY } = useReservationContext()
   const [rental, setRental] = useState<Rentals | null>(null)
   const [totalPrice, setTotalPrice] = useState(0)
-  const [showLoginModal, setShowLoginModal] = useState(false)
+  const [_, setShowLoginModal] = useState(false)
 
   useEffect(() => {
     const fetchRentalDetails = async () => {

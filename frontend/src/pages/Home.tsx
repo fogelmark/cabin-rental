@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Calendar from "../components/calendar/Calendar"
 import PackageDropDown from "../components/packagedropdown/PackageDropDown"
 import { useNavigate } from "react-router-dom"
@@ -12,9 +12,16 @@ import PackageInfoCard from "../components/cards/rentals/PackageInfoCard";
 import InfoCard from "../components/cards/testimonials/InfoCard";
 import Carousel from "../components/carousel/Carousel";
 import ReviewCard from "../components/cards/testimonials/ReviewCard";
+import { useReservationContext } from "../context/reservationContext";
 
 const Home = () => {
+
+  const [dates, setDates] = useState<Dates | null>(null)
+
   const navigate = useNavigate()
+
+  const { reservation } = useReservationContext()
+
 
   const [selectedPackage, setSelectedPackage] = useState('all')
 
@@ -23,7 +30,18 @@ const Home = () => {
   }
 
   const handleSearch = () => {
-    navigate(`/rentals/packages/${selectedPackage}`)
+    const dates = localStorage.getItem('RESERVATION')
+    if (dates) {
+      const parsed = JSON.parse(dates)
+      setDates(parsed)
+
+      if (parsed.checkIn === 'When?' || parsed.checkOut === 'When?') {
+        return alert('Please select a date!')
+      }
+      navigate(`/rentals/packages/${selectedPackage}`)
+
+    }
+
   }
 
 

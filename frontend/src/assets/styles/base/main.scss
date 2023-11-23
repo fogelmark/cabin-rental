@@ -8,6 +8,16 @@
   font-family: $body-font;
 }
 
+.main-body {
+  min-height: calc(100lvh - 79px - 288.59px);
+}
+
+@media (max-width: 992px) {
+  .main-body {
+    min-height: calc(100lvh - 79px - 635.53px);
+  }
+}
+
 p,
 h1,
 h2,

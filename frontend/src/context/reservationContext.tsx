@@ -27,8 +27,6 @@ export const ReservationProvider = ({ children }: ReservationContextProviderProp
   const LOCAL_STORAGE_KEY = 'RESERVATION'
 
   const [reservation, setReservation] = useState<Reservation | null>(null)
-  // const [loading, setLoading] = useState<boolean>(true);
-  // const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const reservationData = localStorage.getItem(LOCAL_STORAGE_KEY)
